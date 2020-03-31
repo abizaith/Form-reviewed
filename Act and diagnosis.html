@@ -1503,10 +1503,9 @@ input[type="submit"] {
                 </tr>
                 <tr>
                     <td><b>Case status / Etat de cas: </b></td>
-                    <td><obs conceptId="$@Case_status@" answerConceptIds="$@NEW_v2@,$@Old@"
-                             answerLabels="New Case, Old Case" /></td>
+                    <td><obs conceptId="$@Case_status@" answerConceptIds="$@NEW_v2@,$@Old@" answerLabels="New Case, Old Case" required="true"/></td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td><b>Department</b></td>
                     <td>
                         <obs conceptId="$@PRIMARY_CARE_SERVICE_REQUESTED@" required="true"/>
@@ -1517,7 +1516,7 @@ input[type="submit"] {
                     <td>
                         <obs conceptId="$@Consultation@" required="true"/>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td>Treatment/Action taken</td>
                     <td><obs conceptId="$@PATIENT_PLAN_COMMENTS@" style="textarea" rows="3" cols="50" /></td>
@@ -1528,7 +1527,6 @@ input[type="submit"] {
 
     <section headerCode="">
         <td><font color="blue"><b>Acts</b></font></td>
-        <div class="sectionbody">
         <div class="sectionbody">
             <table class="baseline-aligned">
                 <tr>
@@ -1548,7 +1546,7 @@ input[type="submit"] {
                 </tr>
             </table>
 
-        <div id="echographyId">
+            <div id="echographyId">
                 <fieldset>
                     <legend><b>Echographie</b></legend>
                     <obsgroup groupingConceptId="$@Echographie@">
@@ -1562,8 +1560,8 @@ input[type="submit"] {
                     <br/>
                 </fieldset>
                 <div style="color: blue;" id="echographyCloseId"><span><b>[Close me]</b></span></div>
-        </div>
-        <div id="stomatologyId">
+            </div>
+            <div id="stomatologyId">
                 <fieldset>
                     <legend><b>Stomatologie</b></legend>
                     <br/>
@@ -2133,7 +2131,7 @@ input[type="submit"] {
         </div>
     </section>
 
-        <center>
-            <submit/>
-        </center>
+    <center>
+        <submit/>
+    </center>
 </htmlform>

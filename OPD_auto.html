@@ -1497,6 +1497,10 @@ if(jQuery){
  });
 }
 </script>
+    <span style="float:right">Paper Form ID: $paperFormId</span>
+    <h2>Admission (Billing automation) (v1.0)</h2>
+
+  <!--  <postSubmissionAction class="org.openmrs.module.mohbilling.automation.CreateBillOnHtmlFormSubmissionAction"/>-->
 
     <section headerCode="GENERAL INFORMATION">
         <table border="2" cellspacing="0" cellpadding="6" width="100%">
@@ -1581,8 +1585,7 @@ if(jQuery){
         </table>
     </section>
 
-
-    <section headerCode="TRANSFER">
+<!--    <section headerCode="TRANSFER">
         <table>
             <tr>
                 <td>
@@ -1590,13 +1593,36 @@ if(jQuery){
                 </td>
             </tr>
         </table>
-    </section>
+    </section>-->
+<!--    <section headerLabel="ADMISSION INFO">
+        <table class="baseline-aligned">
+
+            <tr>
+                <td><b>Desease Type:</b></td>
+                <td><obs conceptId="106945" answerConceptId="" required="true"/></td>
+            </tr>
+            <tr>
+                <td><b>Consultation Type</b></td>
+                <td>
+                    <obs conceptId="d6dafc4b-9ad8-4467-94a9-0eca78648254" required="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Department</b></td>
+                <td>
+                    <obs conceptId="2cda28df-2fe7-42e0-bb2f-376c9f803537" required="true"/>
+                </td>
+            </tr>
+        </table>
+    </section>-->
 
 
     <section headerLabel="RESIDENCE:" >
         <table  border="1" cellspacing="0" cellpadding="6" width="100%">
             <tr>
-                <td rowspan="3"><addressHierarchyRwanda/><br/><obs conceptId="3cda3d7e-26fe-102b-80cb-0017a47871b2" labelText="Telephone: " size="9"/></td>
+                <td rowspan="3"><addressHierarchyRwanda/><br/>
+                   <!-- <obs conceptId="3cda3d7e-26fe-102b-80cb-0017a47871b2" labelText="Telephone: " size="9"/>-->
+                </td>
             </tr>
         </table>
     </section>
