@@ -1052,19 +1052,26 @@ input[type="submit"] {
                                 });
                     });
     </script>
-
-    <section headerCode="">
+    <section>
+        <div class="sectionheader">0. GENERAL INFORMATION</div>
+        <div class="sectionbody">
         <table border="2" cellspacing="0" cellpadding="6" width="100%">
             <tr>
                 <td>
-                    Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;Primary Care ID Type&quot;)" />
-                </td>
-                <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
-                </td>
-                <td>
-                    Age: <lookup expression="patient.age" class="value"/>
+                    <b><u>Patient:</u></b><lookup expression="patient.personName"/><br/>
+                    <b>Id Number:</b><lookup expression="patient.patientIdentifier.identifier"/><br/>
+                    {
+                    <b>Sex:</b><font color="blue"><lookup expression="patient.gender"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Age:</b><font color="blue"><lookup expression="patient.age"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Education Level:</b><font color="blue"><lookup expression="personAttributes.get('Education Level')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Religion:</b><font color="blue"><lookup expression="personAttributes.get('Religion')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Profession:</b><font color="blue"><lookup expression="personAttributes.get('Profession')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Phone number:</b><font color="blue"><lookup expression="personAttributes.get('Phone number')"/></font>
+                    }
                 </td>
             </tr>
+        </table>
+        <table border="2" cellspacing="0" cellpadding="6" width="100%">
             <tr>
                 <td>
                     Date:
@@ -1079,25 +1086,116 @@ input[type="submit"] {
                     <encounterProvider role="Provider"/>
                 </td>
             </tr>
+            <!--<tr>
+                <td><font color="red">Admission Date</font></td>
+                <td><lookup expression="fn.latestObs(10045).getDateTime()"/></font></td>
+            </tr>-->
+        </table>
+
+        <table>
+            <tr>
+                <td class="lblcolor">Temperature</td>
+                <td>  <font color="red"><lookup expression="fn.latestObs(5088).getValueNumeric()"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">Weight:</td>
+                <td>  <font color="red"><lookup expression="fn.latestObs(5089).getValueNumeric()"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">Height:</td>
+                <td>   <font color="red"><lookup expression="fn.latestObs(5090).getValueNumeric()"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">SBP:</td>
+                <td>  <font color="red"><lookup expression="fn.latestObs(5085).getValueNumeric()"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">DBP:</td>
+                <td>  <font color="red"><lookup expression="fn.latestObs(5086).getValueNumeric()"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">Pulse:</td>
+                <td>  <font color="red"><lookup expression="fn.latestObs(5087).getValueNumeric()"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">O2 Saturator:</td>
+                <td>  <font color="red"><lookup expression="fn.latestObs(5092).getValueNumeric()"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">CLINICAL IMPRESSION COMMENTS:</td>
+                <td> <font color="red"><lookup expression="fn.latestObs(1364).getValueText()"/></font>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">RECOMMENDATIONS:</td>
+                <td> <font color="red"><lookup expression="fn.latestObs(1391).getValueText()"/></font>
+                </td>
+            </tr>
+        </table>
+        </div>
+    </section>
+
+    <!--    <section headerCode="TRANSFER">
+            <table>
+                <tr>
+                    <td>
+                        <lookup expression="fn.latestObs(106937).getValueComplex()"/>
+                    </td>
+                </tr>
+            </table>
+        </section>-->
+    <!--    <section headerLabel="ADMISSION INFO">
+            <table class="baseline-aligned">
+
+                <tr>
+                    <td><b>Desease Type:</b></td>
+                    <td><obs conceptId="106945" answerConceptId="" required="true"/></td>
+                </tr>
+                <tr>
+                    <td><b>Consultation Type</b></td>
+                    <td>
+                        <obs conceptId="d6dafc4b-9ad8-4467-94a9-0eca78648254" required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Department</b></td>
+                    <td>
+                        <obs conceptId="2cda28df-2fe7-42e0-bb2f-376c9f803537" required="true"/>
+                    </td>
+                </tr>
+            </table>
+        </section>-->
+
+
+    <section headerLabel="RESIDENCE:" >
+        <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td rowspan="3"><addressHierarchyRwanda/><br/>
+                    <!-- <obs conceptId="3cda3d7e-26fe-102b-80cb-0017a47871b2" labelText="Telephone: " size="9"/>-->
+                </td>
+            </tr>
         </table>
     </section>
 
-            <!-- This div adds general IPD Visit part -->
+    <section headerCode="">
+        <table border="2" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td><font color="red">Admission Date</font><lookup expression="fn.latestObs(10045).getDateTime()"/></td>
+            </tr>
+        </table>
+    </section>
 
-<!--            <div id="tab3" class="sectionheader">
-                <span id="tab_title3">3. General IPD Visit</span>
-            </div>-->
-            <!--<div id="tab_content3">-->
                 <section>
                     <div class="sectionheader">1. ANAMNESE ET PREMIERE OBSERVATION</div>
                     <div class="sectionbody">
                         <table>
-                            <tr>
-                                <td>Date</td>
-                                <td>
-                                    <encounterDate default="today" size="30"/>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <obs conceptId="6178" labelText="Histoire clinique"/>
