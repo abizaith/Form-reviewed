@@ -1,0 +1,131 @@
+<htmlform>
+    <!-- Pedi HIV top level form.
+         HIV-RW.V1.akb.July13.doc
+         Created by Neil Gupta 2014
+     -->
+    <macros>
+        paperFormId = (Fill this in)
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+
+    <style>
+		.section {
+			border: 1px solid $headerColor;
+			padding: 2px;
+			text-align: left;
+			margin-bottom: 1em;
+		}
+		.sectionHeader {
+			background-color: $headerColor;
+			color: $fontOnHeaderColor;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
+		}
+		table.baseline-aligned td {
+			vertical-align: baseline;
+		}
+		th.subheader {
+		background-color: $headerColor;
+		color:white
+		}
+	</style>
+
+
+    <translations defaultLocale="fr">
+        <code name="gender_m">
+            <variant locale="fr" value="Homme" />
+            <variant locale="en" value="Male" />
+        </code>
+        <code name="gender_f">
+            <variant locale="fr" value="Femme" />
+            <variant locale="en" value="Female" />
+        </code>
+    </translations>
+    <!-- Form header -->
+    Centre de santé :
+
+    <table border="2" cellspacing="0" cellpadding="6" width="100%">
+        <tr>
+
+            <td>
+                <img src="/openmrs/moduleResources/rwandareports/images/rwanda-logo.jpg" align="left" height="100"
+                     width="100">
+                </img>
+            </td>
+            <td>
+                <h2>
+                    RWANDA MINISTRY OF HEALTH
+                    <br />
+                    <span class="english">MOH Rwanda</span>
+                </h2>
+            </td>
+
+            <td>
+                <strong>
+                    ANC Program
+                    <br />
+
+                    <br />
+                    <span class="english">Neo flowsheet</span>
+                </strong>
+                <br />
+                Fiche_resume-HIV-HFCSP-RW-V1.0-ng-21Oct10-fr
+            </td>
+        </tr>
+    </table>
+    <table border="1" width="100%">
+        <tr>
+            <td>
+                Nom/
+                <span class="english">Name</span>
+                :
+                <lookup class="value" expression="patient.personName.familyName" />
+                <lookup class="value" expression="patient.personName.givenName" />
+                ID:
+                <lookup class="value" expression="patientIdentifiers.get(&quot;TRACnet ID&quot;)" />
+                <lookup class="value" expression="patientIdentifiers.get(&quot;Primary Care ID Type&quot;)" />
+            </td>
+            <td>
+                Location or Clinic:<encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+            </td>
+            <td>
+                Date:<encounterDate />
+            </td>
+        </tr>
+    </table>
+    <table>
+        <div>
+            <section headerLabel="Neo_admission">
+                <htmlformflowsheet formId="241" windowHeight="450" sharedEncounter="true" showHtmlForm="true"/>
+            </section>
+        </div>
+        <div>
+            <section headerLabel="Neo_admission infant bellow 1 month">
+                <htmlformflowsheet formId="244" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
+            </section>
+        </div>
+        <div>
+            <section headerLabel="Neo_daily evaluation and orders">
+                <htmlformflowsheet formId="245" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
+            </section>
+        </div>
+        <div>
+            <section headerLabel="Neo_nursing assessment">
+                <htmlformflowsheet formId="242" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
+            </section>Neo_nursing assessment
+        </div>
+        <div>
+            <section headerLabel="Neo_Progress_note">
+                <htmlformflowsheet formId="247" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
+            </section>Neo_nursing assessment
+        </div>
+        <div>
+            <section headerLabel="Neo_Education">
+                <htmlformflowsheet formId="248" sharedEncounter="true" showHtmlForm="true" windowHeight="400"/>
+            </section>Neo_nursing assessment
+        </div>
+    </table>
+
+</htmlform>

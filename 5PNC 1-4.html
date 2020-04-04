@@ -1,0 +1,389 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+	.lblcolormatrix{background: #e2e3f2;width: 150px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+.pages {
+    display:none;
+}
+.pageHead {
+	background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+</style>
+    <script type="text/javascript">
+	var $j = jQuery.noConflict();
+
+	$j(document).ready(function(){
+	   $j('#page1id').click(function() {
+			$j('#page1').toggle();
+			$j('#page2').hide();
+			$j('#page3').hide();
+	   });
+
+	   $j('#page2id').click(function() {
+			$j('#page2').toggle();
+			$j('#page1').hide();
+			$j('#page3').hide();
+	   });
+
+	   $j('#page3id').click(function() {
+			$j('#page3').toggle();
+			$j('#page1').hide();
+			$j('#page2').hide();
+	   });
+
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date
+	});
+</script>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="pageHead"><h3 id="page1id">EXAMINATION (PNC 1-4)</h3></div>
+
+        <div id="page1" class="pages">
+            <section>
+                <div id="page1a" class="pages">
+                    <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">A. Current Complaints</a></li> </div>
+                <table id="tb1a" class="baseline-aligned"  style="display:none">
+                    <tr>
+                        <td class="lblcolor">Complaint?</td>
+                        <td><obs conceptId="3ce2b170-26fe-102b-80cb-0017a47871b2" style="textarea" rows="3" cols="30"/></td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <section headerCode="A. Assessing mother breast feeding ">
+                    <table class="baseline-aligned">
+                        <td><b>History since delivery</b></td>
+                        <tr><td class="lblcolor">Mother is not breast feeding</td>
+                            <td><obs conceptId="105788" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <td><b>Examination</b></td>
+                        <tr><td class="lblcolor">Incorrect breastfeeding position and attachment </td>
+                            <td><obs conceptId="105789" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="B. Assessing mother’s mental condition ">
+                    <table class="baseline-aligned">
+                        <td><b>History since delivery</b></td>
+                        <tr>
+                            <td><obs conceptId="106599" answerConceptIds="105824,105771,105825,105826,105827,867,105828,105829" answerCodes="Feeling of anxiety about resuming sexual intercourse,Pain in perineal wound,trauma during sexual intercourse, Feeling of anxiety or lack of confidence about breast milk supply,Headaches,Insomnia, post-partum depression, psychosis and anxiety" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="C.Assessing vaginal bleeding ">
+                    <table class="baseline-aligned">
+                        <td><b>History since delivery</b></td>
+                        <tr><td class="lblcolor">Vaginal bleeding</td>
+                            <td><obs conceptId="8520" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <td><b>Perineal Examination</b></td>
+                        <tr>
+                            <td class="lblcolor">Vaginal bleeding</td>
+                            <td><obs conceptId="8520" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="D. Assessing Malaria since Delivery">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Fever with Chills and rigors</td>
+                            <td><obs conceptId="105506" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Rapid Diagnostic test for Malaria (RDT) OR Blood smear = positive</td>
+                            <td><obs conceptId="105830" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="E. Assessing mother’s breast condition ">
+                    <table class="baseline-aligned">
+                        <td><b>History since delivery</b></td>
+                        <tr>
+                            <td>Breast pain and swelling</td>
+                            <td><obs conceptId="105831" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <td><b>Physical Examination</b></td>
+                        <tr>
+                            <td><obs conceptId="106604" answerConceptIds="105832,105833,36457,105834,105835,105836" answerCodes="Nipple soreness, Fissured, Retraction of nipple - N6453, Swollen, Shinny breast, Part of breast is painful swollen red" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="F. Assessing the uterus condition">
+                    <table class="baseline-aligned">
+                        <td><b>History since delivery</b></td>
+                        <tr>
+                            <td><obs conceptId="106600" answerConceptIds="105837,105586" answerCodes="Pain in SPA ( Supra Pubic Area), Foul smelling vaginal discharge" style="radio" /></td>
+                        </tr>
+                        <td><b>Physical Examination</b></td>
+                        <tr>
+                            <td><obs conceptId="105586" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <td><b>Temperature measurement</b></td>
+                        <tr>
+                            <td >Temperature</td>
+                            <td><obs conceptId="5088" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td >Specify if &#62; 38’ C</td>
+                            <td><obs conceptId="105838" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <td><b>Abdominal Examination</b></td>
+                        <tr>
+                            <td>Lack of uterine involution (normal involution is half-inch per day after delivery)</td>
+                            <td><obs conceptId="105839" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="G. Assessing the Urinary Trac">
+                    <table class="baseline-aligned">
+                        <td><b>History since delivery</b></td>
+                        <tr>
+                            <td><obs conceptId="106601" answerConceptIds="105840,105841,105843,105842" answerCodes="Flank Pain,Burning Urination, Difficult urination Cannot pass urine Stress incontinence Dribbling of urine, Leakage of urine" style="radio" /></td>
+                        </tr>
+                        <td><b>Temperature measurement</b></td>
+                        <tr>
+                            <td >Temperature</td>
+                            <td><obs conceptId="5088" style="text" size="25"/></td>
+                        </tr>
+                        <tr>
+                            <td >Specify if &#62; 38’ C</td>
+                            <td><obs conceptId="105838" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="H.Assessing General Condition">
+                    <table class="baseline-aligned">
+                        <td><b>History since delivery</b></td>
+                        <tr>
+                            <td><obs conceptId="106602" answerConceptIds="105844,105845,105846" answerCodes="Numbness of Limb,Constipation or Bleeding and painful piles, Unilateral calf muscle pain" style="radio" /></td>
+                        </tr>
+                        <td><b>Physical Examination</b></td>
+                        <tr><td >Unilateral calf muscle tenderness and swelling</td>
+                            <td><obs conceptId="105847" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr><td >Pallor</td>
+                            <td><obs conceptId="5245" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr><td >Mental health condition</td>
+                            <td><obs conceptId="107094" style="radio" /></td>
+                        </tr>
+                        <tr><td >Breast Condition</td>
+                            <td><obs conceptId="106604" style="radio" /></td>
+                        </tr>
+                        <td><b>Investigation</b></td>
+                        <tr><td >Hb %</td>
+                            <td><obs conceptId="21" style="text" size="25"/></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="F. Check for Cough and Breathing Difficulties">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106603" answerConceptIds="105848,105849" answerCodes="Cough and Breathing Difficulties Less than 2 week,Cough and Breathing Difficulties More than 2 week " style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="G. Nutrition Status ">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">MUAC &lt; 21</td>
+                            <td><obs conceptId="10972" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Is the mother qualifies for FBP or other food supplement program </td>
+                            <td><obs conceptId="105850" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>   <td class="lblcolor">Summary of positive and negative findings, and actions taken</td>
+                            <td><obs conceptId="105532" rows="1" cols="30" /> </td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page2id">INVESTIGATION (PNC1)</h3></div>
+
+        <div id="page2" class="pages">
+            <section>
+                <section headerCode="Conditions/ desease">
+                    <table class="baseline-aligned">
+                        <tr><td class="lblcolor">Vaginal bleeding</td>
+                            <td><obs conceptId="8520" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="Convulsions/ Fits">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106599" answerConceptIds="105851,105507,5086,5085" answerCodes="Postnatal convulsions, Severe headaches Blurred vision, Diastoric BP, Systoric BP" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="Eclampsia investigation">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106596" answerConceptIds="105853,105854,105855,105856,106597" answerCodes="Is systolic BP is less than 90, Diastolic BP  &#62; 90 on two readings, Diastolic BP 90-110 mmHg on two readings and 2+ proteinuria, Diastolic BP greather than 110 mmHg and 3+ proteinuria,Diastolic BP  &#62; 90 on two readings and 2+ proteinuria, and any of" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="Diagnosis">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106615" answerConceptIds="903,10801,8288,105507,105583,40930,105852" answerCodes="Hypertension, pre-eclampsia,Eclampsia /Severe Pre Eclampsia, Severe headaches Blurred vision,Blurred vision, Epigastric pain - R1013, Breast pain or breast problems" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="">
+                    <table class="baseline-aligned">
+                        <tr><td class="lblcolor">STI/RTI</td>
+                            <td><obs conceptId="174" answerCodes="Positive,Negative" style="radio" /></td>
+                        </tr>
+                        <tr><td class="lblcolor">Syphilis</td>
+                            <td><obs conceptId="1031" answerConceptIds="703,664" answerCodes="Positive,Negative" style="radio" /></td>
+                        </tr>
+                        <tr><td class="lblcolor">Anemia</td>
+                            <td><obs conceptId="3" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">HB </td>
+                            <td><obs conceptId="21" style="" /></td>
+                        </tr>
+                        <tr><td class="lblcolor">HIV </td>
+                            <td><obs conceptId="3753" answerConceptIds="703,664" answerCodes="Positive,Negative" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">TB</td>
+                            <td><obs conceptId="8509" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Malaria</td>
+                            <td><obs conceptId="106350" answerCodes="Positive,Negative" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <div class="pageHead"><h3 id="page3id">TREATMENT &amp; COUNSELING (PNC1-4)</h3></div>
+
+        <div id="page3" class="pages">
+            <section>
+                <section headerCode="A. Preventative treatment given">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106594" answerConceptIds="4063,9407,9213" answerCodes="Vitamin A capsule, Vitamin B, Iron" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="B. Give Counselling">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106595" answerConceptIds="1180,5483,105811,105812,105813,105815,105818,105819" answerCodes="Postpartum,Family planning,Encourage urination,Hand washing, general hygiene, and cord care,Healthy eating for the mother and iron supplementation,Danger signs for baby and mother (see above),Sleeping under a long-lasting insecticide-treated net,Exclusive breastfeeding for first 6 months;avoid prelacteal feeds" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+            </section>
+        </div>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+
+</htmlform>

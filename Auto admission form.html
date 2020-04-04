@@ -49,7 +49,7 @@ if(jQuery){
     <span style="float:right">Paper Form ID: $paperFormId</span>
     <h2>Admission (Billing automation) (v1.0)</h2>
 
-    <!--<postSubmissionAction class="org.openmrs.module.mohbilling.automation.CreateBillOnHtmlFormSubmissionAction"/>-->
+    <postSubmissionAction class="org.openmrs.module.mohbilling.automation.CreateBillOnHtmlFormSubmissionAction"/>
 
     <section headerCode="GENERAL INFORMATION">
         <table border="2" cellspacing="0" cellpadding="6" width="100%">
@@ -149,7 +149,7 @@ if(jQuery){
             </tr>-->
             <tr>
                 <td><b>Desease Type:</b></td>
-                <td><obs conceptId="106950" required="true"/>
+                <td><obs conceptId="107262" required="true"/>
                          <!--answerConceptId="106948" answerCodes="" style="radio" />
                     <obs conceptId="106950" answerConceptId="106949" answerCodes="" style="radio"  />
                     <obs conceptId="106950" answerConceptId="106947" answerCodes="" style="radio"  />
@@ -164,7 +164,7 @@ if(jQuery){
                     <obs conceptId="9811" required="true"/>
                 </td>
             </tr>
-            <tr>10045
+            <tr>
                 <td><b>Department</b></td>
                 <td>
                     <obs conceptId="6702" required="true"/>
@@ -181,7 +181,7 @@ if(jQuery){
                  <td>Transfer(CS)/Transfer From:<obs conceptId="1427" lableText="Transfert(CS)/Transferred In From" style=""/></td>
              </tr>
             <tr>
-                   <td><obs conceptId="" labelText="Admission Date" size="40" /> </td>
+                   <td><obs conceptId="10045" labelText="Admission Date" size="40" /> </td>
                </tr>
         </table>
     </section>

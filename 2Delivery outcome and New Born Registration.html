@@ -1,0 +1,585 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+.pages {
+    display:none;
+}
+.pageHead {
+	background-color: #dfeffc;
+    color: #003366;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+.pageHead:hover {
+  color: rgb(12, 12, 12);
+  background-color: gold;
+}
+</style>
+    <script type="text/javascript">
+	var $j = jQuery.noConflict();
+	$j(document).ready(function(){
+
+
+	   $j('#page1id').click(function() {
+			$j('#page1').toggle();
+			$j('#page2').hide();
+			$j('#page3').hide();
+	   });
+
+	   $j('#page2id').click(function() {
+			$j('#page2').toggle();
+			$j('#page1').hide();
+			$j('#page3').hide();
+	   });
+
+	   $j('#page3id').click(function() {
+			$j('#page3').toggle();
+			$j('#page1').hide();
+			$j('#page2').hide();
+	   });
+
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	});
+</script>
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <postSubmissionAction class="org.openmrs.module.mch.CreatePatientInSubmissionAction"/>
+        <section headerCode=" ">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <div class="pageHead"><h3 id="page1id">CARE DURING BIRTH</h3></div>
+
+
+            <div id="page1" class="pages">
+                <section headerCode="A. Preparation for birth">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">All delivery equipment including newborn resuscitation equipment are available </td>
+                            <td><obs conceptId="105622" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Place of delivery is clean and warm </td>
+                            <td><obs conceptId="105623" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="B. Continuous supportive care during labour">
+                    <obsgroup groupingConceptId="106613">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td><obs conceptId="106613" answerConceptId="105624" style="checkbox" /></td>
+                                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <td><obs conceptId="106613" answerConceptId="105625" style="checkbox" /></td>
+                                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <td><obs conceptId="106613" answerConceptId="105626" style="checkbox" /></td>
+                            </tr>
+                        </table>
+                    </obsgroup>
+                </section>
+                <section headerCode="C. Birth of the head">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Birth of the head</td>
+                            <td><obs conceptId="105627" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="D. Anticipate the need for resuscitation">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Prolonged second stage</td>
+                            <td><obs conceptId="38790" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Specify if Yes</td>
+                            <td><obs conceptId="105628" rows="1" cols="30" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Meconium stained liquor</td>
+                            <td><obs conceptId="105629" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Tight cord around the neck</td>
+                            <td><obs conceptId="105630" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Signs of fetal distress </td>
+                            <td><obs conceptId="105631" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+
+                        <tr>
+                            <td class="lblcolor">Face is clear of mucus and membranes </td>
+                            <td><obs conceptId="105632" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Prepare; Ambu bag, Suction apparatus, Adrenaline and  Naloxone</td>
+                            <td><obs conceptId="105633" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="E. Active management of third stage of  labour">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Give Oxytocin 10 IU IM after birth of baby </td>
+                            <td><obs conceptId="105634" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Deliver placenta by controlled cord tract on a contraction</td>
+                            <td><obs conceptId="105635" answerCodes="Yes,No" style="radio"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Check the placenta and membranes are complete</td>
+                            <td><obs conceptId="105636" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Monitor the mother every 5 minutes and baby every 15 minutes </td>
+                            <td><obs conceptId="105638" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="F. Assessment of the mother  (for the first two hours)">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td></td>
+                            <td class="lblcolor">1Hour</td>
+                            <td class="lblcolor">2Hours</td>
+
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Temperature: within the first hour</td>
+                            <td><obs conceptId="105639" answerCodes="Normal,Abnormal" style="radio" /></td>
+                            <td><obs conceptId="105639" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Pulse, RR, BP: after birth of the placenta</td>
+                            <td ><obs conceptId="105640" answerCodes="Normal,Abnormal" style="radio" /></td>
+                            <td ><obs conceptId="105640" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Fundus and lochia: after birth of the placenta, then every 15?30 minutes</td>
+                            <td ><obs conceptId="105641" answerCodes="Normal,Abnormal" style="radio" /></td>
+                            <td ><obs conceptId="105641" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Perineum: with first maternal observations</td>
+                            <td ><obs conceptId="105642" answerCodes="Normal,Abnormal" style="radio" /></td>
+                            <td ><obs conceptId="105642" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Pain and discomfort (analgesics)</td>
+                            <td ><obs conceptId="105643" answerCodes="Normal,Abnormal" style="radio" /></td>
+                            <td ><obs conceptId="105643" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Urine output: monitor voiding postpartum</td>
+                            <td ><obs conceptId="105644" answerCodes="Normal,Abnormal" style="radio" /></td>
+                            <td ><obs conceptId="105644" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Examine placenta, membranes and cord </td>
+                            <td ><obs conceptId="105645" answerCodes="Normal,Abnormal" style="radio" /></td>
+                            <td ><obs conceptId="105645" answerCodes="Normal,Abnormal" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="H. Immediate care if the baby is stable">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Prevention of Hypothermia (KMC)</td>
+                            <td><obs conceptId="105646" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Assessment of need for resuscitation ( use HBB protocol)</td>
+                            <td><obs conceptId="105647" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Early breastfeeding ( First 1 h after birth)</td>
+                            <td><obs conceptId="105648" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Umbilical cord care ( tying 2 – 3 cm from abdomen, apply chlorexhidine  Dicluconate 7.1% )</td>
+                            <td><obs conceptId="105649" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Eye care ( Antibiotic ointment)</td>
+                            <td><obs conceptId="105650" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Administer Vit K1 intra muscular ( 0.5 mg if &#60; 1.5 kg or 1 mg if &#62; 1.5 kg  ) or 2 mg orally</td>
+                            <td><obs conceptId="105651" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="I. Danger signs ">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106614" answerConceptId="105652" style="checkbox" /></td>
+                            <td><obs conceptId="106614" answerConceptId="8506" style="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106614" answerConceptId="105653" style="checkbox" /></td>
+                            <td><obs conceptId="106614" answerConceptId="105654" style="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106614" answerConceptId="105655" style="checkbox" /></td>
+                            <td><obs conceptId="106614" answerConceptId="105656" style="checkbox" /></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106614" answerConceptId="105657" style="checkbox" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Summary of positive and negative findings, and recommandation</td>
+                            <td><obs conceptId="105532" rows="1" cols="30" /> </td>
+                        </tr>
+                    </table>
+                </section>
+            </div>
+        </section>
+        <section>
+            <div class="pageHead"><h3 id="page2id">DELIVERY OUTCOME</h3></div>
+
+
+            <div id="page2" class="pages">
+                <section headerCode="Mother">
+                    <table class="baseline-aligned">
+                        <!--<tr>
+                                <td class="lblcolor">Date of delivery</td>
+                                <td><obs conceptId="5599" /></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Mode of Delivery</td>
+                                <td><obs conceptId="5630" style="radio" /></td>
+                            </tr>-->
+                        <tr>
+                            <td class="lblcolor">Maternal Outcome</td>
+                            <td><obs conceptId="8163" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">if Died cause of deaths</td>
+                            <td><obs conceptId="1826" rows="3" cols="30"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Discharge date for Mother</td>
+                            <td><obs conceptId="13666" /></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="New BORN1">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="9621" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="multiple_birth" id="multiple_birth_check"/></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <td><b>First Newborn</b></td>
+                        <tr>
+                            <td><relationship id="relationship" type="9" whoAmI="A" changeExistingRelationship="true,false"/></td>
+                        </tr>
+                        <tr>
+                            <td>Familly Name: <obs conceptId="105658" />Given Name:</td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="8160" answerConceptIds="2843,2844,1067" answerCodes="male,female,unknown" style="radio" labelCode="sex"/></td>
+                        </tr>
+                        <td><b>Newborn status</b></td>
+                        <tr>
+                            <td><obs conceptId="8537" style="radio" labelCode="apgar1"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="8506" style="radio" labelCode="apgar5"/></td>
+                        </tr>
+                        <td><b>Outcome of alive newborn</b></td>
+                        <tr>
+                            <td><obs conceptId="105660" style="radio" labelCode="Newborns placed skin to skin after birth"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105661" style="radio" labelCode="Cry at birth"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105662" style="radio" labelCode="Resuscitatations actions taken using ambubag"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105663" style="radio" labelCode="Resuscitated and cried within5 minutes"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="5314" style="radio" labelCode="Head circumference"/>(CM)</td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="6886" style="radio" labelCode="Height"/>(CM)</td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="5916" id="bweight" style="radio" labelCode="Weight at birth"/>(Kg)</td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105664" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="Malformations congenitales"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105665" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="Breastfed with 1 hour after delivery"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105666" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="Placed under observation for 24 hours"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105667" labelCode="Discharge date for Baby"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106894" labelCode="Baby Birth date"/></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="New BORN2">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="9621" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="multiple_birth" id="multiple_birth_check"/></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <td><b>First Newborn</b></td>
+                        <tr>
+                            <td><relationship id="relationship" type="11" whoAmI="A" changeExistingRelationship="true,false"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="8160" answerConceptIds="2843,2844,1067" answerCodes="male,female,unknown" style="radio" labelCode="sex"/></td>
+                        </tr>
+                        <td><b>Newborn status</b></td>
+                        <tr>
+                            <td><obs conceptId="8537" style="radio" labelCode="apgar1"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="8506" style="radio" labelCode="apgar5"/></td>
+                        </tr>
+                        <td><b>Outcome of alive newborn</b></td>
+                        <tr>
+                            <td><obs conceptId="105660" style="radio" labelCode="Newborns placed skin to skin after birth"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105661" style="radio" labelCode="Cry at birth"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105662" style="radio" labelCode="Resuscitatations actions taken using ambubag"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105663" style="radio" labelCode="Resuscitated and cried within5 minutes"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="5314" style="radio" labelCode="Head circumference"/>(CM)</td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="6886" style="radio" labelCode="Height"/>(CM)</td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="5916" id="bweight" style="radio" labelCode="Weight at birth"/>(Kg)</td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105664" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="Malformations congenitales"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105665" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="Breastfed with 1 hour after delivery"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105666" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="Placed under observation for 24 hours"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105667" labelCode="Discharge date for Baby"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106895" labelCode="Baby Birth date"/></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="C.HIV TESTING">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="1478" answerConceptIds="703,664,1067" answerCodes="Positive,Negative,Unknown" style="radio" labelCode="RPR result"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="2169" style="radio" labelCode="HIV Test Result" answerCodes="no test,waiting,indetermine,negative,positive"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="1837" labelCode="HIV test date"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="105668" answerConceptIds="1065,1066,1067" answerCodes="Yes,No" style="radio" labelCode="TDF/ABC+3TC+ EFVReceived for 7 days after delivery (O/N)"/></td>
+                        </tr>
+                        <td><b>Exposed HIV infant</b></td>
+                        <tr>
+                            <td><obs conceptId="105669" answerConceptIds="1065,1066" answerCodes="Yes,No" style="radio" labelCode="Notified infant follow up service for opening the pink file (O/N)"/></td>
+                        </tr>
+                        <td><b>NVP sirop</b></td>
+                        <tr>
+                            <td><obs conceptId="12501" labelCode="Date Sirop"/></td>
+                        </tr>
+                        <tr>
+                            <td><obs conceptId="106761" labelCode="Time Sirop"/></td>
+                        </tr>
+
+                    </table>
+                </section>
+            </div>
+
+        </section>
+        <section>
+
+            <div class="pageHead"><h3 id="page3id">BABY INITIAL ASSESSMENT</h3></div>
+
+            <div id="page3" class="pages">
+                <section headerCode="A. Initial assessment and brief newborn  examination">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Breathing</td>
+                            <td><obs conceptId="105653" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">HR</td>
+                            <td><obs conceptId="105497" answerCodes="Normal,Abnornal" style="radio"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Colour</td>
+                            <td><obs conceptId="105670" answerCodes="Normal,Abnornal" style="radio"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Reflex irritability</td>
+                            <td><obs conceptId="105677" answerCodes="Normal,Abnornal" style="radio"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Tone</td>
+                            <td><obs conceptId="106762" answerCodes="Normal,Abnornal" style="radio"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Apgar score at 1 and 5 minutes  M</td>
+                            <td><obs conceptId="106763" answerCodes="Normal,Abnornal" style="radio"/></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section headerCode="B. Supportive care">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106611" answerConceptId="105671" style="checkbox" /></td>
+                            <td><obs conceptId="106611" answerConceptId="105672" style="checkbox" /></td>
+                            <td><obs conceptId="106611" answerConceptId="106612" style="checkbox" /></td>
+                            <td><obs conceptId="106611" answerConceptId="105673" style="checkbox" /></td>
+                            <td><obs conceptId="106611" answerConceptId="105674" style="checkbox" /></td>
+                        </tr>
+                    </table>
+                </section>
+                <section headerCode="C. Ongoing assessment·">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td class="lblcolor">Respiratory rate</td>
+                            <td><obs conceptId="106794" answerCodes="Normal,Abnornal" style="radio"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Colour </td>
+                            <td><obs conceptId="105670" answerCodes="Normal,Abnornal" style="radio"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Positioning for patent airway every 15 minutes for first 2 hours</td>
+                            <td><obs conceptId="105675" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Temperature and HR within 1 hour of birth M</td>
+                            <td><obs conceptId="105676" answerCodes="Normal,Abnornal" style="radio"/></td>
+                        </tr>
+                    </table>
+                </section>
+            </div>
+        </section>
+        <center>
+            <completeProgram programId="26"/>
+            <enrollInProgram programId="27"/>
+            <submit/>
+        </center>
+
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

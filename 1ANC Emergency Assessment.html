@@ -1,0 +1,755 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#a6c9e2
+        fontOnHeaderColor = black
+    </macros>
+
+    <translations defaultLocale="en">
+        <code name="Temp">
+
+            <variant locale="en" value="Temp  (celcius)"/>
+        </code>
+
+
+        <code name="hd_currentprobl">
+            <variant locale="en" value="CURRENT PROBLEMS"/>
+            <variant locale="fr" value="PROBLÈMES ACTUELS"/>
+        </code>
+        <code name="urinary_infection">
+            <variant locale="en" value="Signs suggestive of urinary infections"/>
+            <variant locale="fr" value="Signes évocateurs d'infections urinaires"/>
+        </code>
+
+    </translations>
+
+    <style>
+
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   .a {
+
+    font-weight: bold;
+    text-decoration: none;
+   }
+   .pages:hover {
+  color: gold;
+  background-color: gold;
+}
+   table.baseline-aligned td {
+      vertical-align: baseline;
+	  border-left: 1px solid #000;
+   }
+   .lblcolor{background: #e2e3f2;width: 500px;}
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+
+table.risks td {
+	font-size: 0.9em;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+
+
+   /* menu  */
+
+   .gn-icon::before {
+		display: inline-block;
+		width: 60px;
+		text-align: center;
+		text-transform: none;
+        font-weight: bold;
+		font-style: normal;
+		font-variant: normal;
+		font-family: 'ecoicons';
+		line-height: 1;
+		speak: none;
+		-webkit-font-smoothing: antialiased;
+}
+.gn-icon-cog::before {
+		content: "\e006"
+}
+
+
+.gn-menu-main > li {
+		display: block;
+		float: left;
+		height: 100%;
+		border-right: 1px solid #c6d0da;
+		text-align: center;
+}
+
+.gn-menu {
+		border-bottom: 1px solid #c6d0da;
+		text-align: left;
+		font-size: 18px;
+}
+
+.gn-menu li:not(:first-child),
+.gn-menu li li {
+		box-shadow: inset 0 1px #c6d0da
+}
+   /* end of menu  */
+
+table.risks td {
+	font-size: 0.9em;
+}
+
+
+
+table.baseline-aligned td {
+	vertical-align: center;
+
+}
+
+/*  start menu */
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'ecoicons';
+    src: url("../fonts/ecoicons/ecoicons.eot");
+    src: url("../fonts/ecoicons/ecoicons.eot?#iefix") format("embedded-opentype"), url("../fonts/ecoicons/ecoicons.woff") format("woff"), url("../fonts/ecoicons/ecoicons.ttf") format("truetype"), url("../fonts/ecoicons/ecoicons.svg#ecoicons") format("svg");
+}
+.gn-menu-main,
+.gn-menu-main ul {
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: #5f6f81;
+    list-style: none;
+    text-transform: none;
+    font-weight: 300;
+    font-family: 'Lato', Arial, sans-serif;
+    line-height: 60px;
+}
+.gn-menu-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    font-size: 13px;
+}
+.no-touch .gn-menu-main a:hover,
+.no-touch .gn-menu li.gn-search-item:hover,
+.no-touch .gn-menu li.gn-search-item:hover a {
+    background: #5f6f81;
+    color: white;
+}
+
+.gn-menu-main > li {
+    display: block;
+    float: left;
+    height: 100%;
+    border-right: 1px solid #c6d0da;
+    text-align: center;
+}
+.gn-menu-main li.gn-trigger {
+    position: relative;
+    width: 60px;
+    user-select: none;
+}
+.gn-menu-main > li:last-child {
+    float: right;
+    border-right: none;
+    border-left: 1px solid #c6d0da;
+}
+
+.gn-menu-main > li > a {
+    padding: 0 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.gn-menu-wrapper {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 60px; /* will be transitioned to 340px */
+    border-top: 1px solid #c6d0da;
+    background: white;
+    transform: translateX(-60px); /* will be transitioned to 0px */
+    transition: transform 0.3s, width 0.3s;
+}
+
+.gn-scroller {
+    position: absolute;
+    overflow-y: scroll;
+    width: 370px;
+    height: 100%;
+}
+
+.gn-menu {
+    border-bottom: 1px solid #c6d0da;
+    text-align: left;
+    font-size: 18px;
+}
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search::-webkit-input-placeholder {
+    color: white
+}
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search:-moz-placeholder {
+    color: white
+}
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search::-moz-placeholder {
+    color: white
+}
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search:-ms-input-placeholder {
+    color: white
+}
+
+.gn-icon-menu::before {
+    margin-left: -15px;
+    vertical-align: -2px;
+    width: 30px;
+    height: 3px;
+    background: #5f6f81;
+    box-shadow: 0 3px white, 0 -6px #5f6f81, 0 -9px white, 0 -12px #5f6f81;
+    content: '';
+}
+/* end menu  */
+</style>
+
+    <script type="text/javascript">
+ _init : function() {
+        this.trigger = this.el.querySelector( 'a.gn-icon-menu' );
+        this.menu = this.el.querySelector( 'nav.gn-menu-wrapper' );
+        this.isMenuOpen = false;
+        this.eventtype = mobilecheck() ? 'touchstart' : 'click';
+        this._initEvents();
+
+        var self = this;
+        this.bodyClickFn = function() {
+            self._closeMenu();
+            this.removeEventListener( self.eventtype, self.bodyClickFn );
+        };
+    }
+</script>
+
+    <script type="text/javascript">
+		var $ = jQuery.noConflict();
+		$j(document).ready(function(){
+
+
+            $('#loctd').hide();
+            $('#oxygentr').hide();
+            $('#vulvatr').hide();
+            $('#bleedingtr').hide();
+
+				// encounter date
+	var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date
+    	// ============ visit date =========
+        var newDate = new Date(today.setMonth(today.getMonth()+1));
+             var dt = newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+newDate.getDate();
+            setValue('nextvisitid.value',dt);
+    // ===================
+
+
+	 $("#locid").change(function() {
+		var isCheckedNormal = $('#w36_0').attr('checked')?true:false;
+		var isCheckedAbdnormal = $('#w36_1').attr('checked')?true:false;
+
+		if(isCheckedAbdnormal==true){
+		$j('#loctd').show();
+		}else{
+		 $j('#loctd').hide();
+		}
+  });
+  $("#locid").change(function() {
+		var isCheckedNormal = $('#w36_0').attr('checked')?true:false;
+		var isCheckedAbdnormal = $('#w36_1').attr('checked')?true:false;
+
+		if(isCheckedAbdnormal==true){
+		$j('#loctd').show();
+		}else{
+		 $j('#loctd').hide();
+		}
+  });
+  tendernessid
+
+  $("#oxygen").change(function() {
+		var isCheckedNormal = $('#w42_1').attr('checked')?true:false;
+		var isCheckedAbdnormal = $('#w42_0').attr('checked')?true:false;
+
+		if(isCheckedAbdnormal==true){
+		$j('#oxygentr').show();
+		}else{
+		 $j('#oxygentr').hide();
+		}
+  });
+  $("#vulvaid").change(function() {
+		var isCheckedNormal = $('#w42_1').attr('checked')?true:false;
+		var isCheckedAbdnormal = $('#w42_0').attr('checked')?true:false;
+
+		if(isCheckedAbdnormal==true){
+		$j('#vulvatr').show();
+		}else{
+		 $j('#vulvatr').hide();
+		}
+  });
+  $("#bleedingid").change(function() {
+		var isCheckedNormal = $('#w42_1').attr('checked')?true:false;
+		var isCheckedAbdnormal = $('#w42_0').attr('checked')?true:false;
+
+		if(isCheckedAbdnormal==true){
+		$j('#bleedingtr').show();
+		}else{
+		 $j('#bleedingtr').hide();
+		}
+  });
+  $("#heartid").change(function() {
+		var isCheckedNormal = $('#w92_0').attr('checked')?true:false;
+		var isCheckedAbdnormal = $('#w92_1').attr('checked')?true:false;
+
+		if(isCheckedAbdnormal==true){
+		$j('#hearttr').show();
+		}else{
+		 $j('#hearttr').hide();
+		}
+  });
+
+  $('#dbpid').change(function() {
+
+var sbp = getValue('sbpid.value');
+
+// var dbp = $j('#dbpid').val();
+var dbp = getValue('dbpid.value');
+
+
+
+// var sbp = $j('#sbpid').val();
+// var dbp = $j('#dbpid').val();
+ // alert(sbp+" sbp "+dbp);
+$j('#dbptd').css('background-color','white');
+//  alert(dbp+" - before if condition - "+sbp);
+
+// if($j('#w170').val() &amp;&amp; $j('#w172').val()) {
+    // alert("both sbp and dbp are not empty
+     if(sbp != null &amp;&amp; dbp != null) {
+    if(sbp &lt; 90 &amp;&amp; dbp &lt; 60)  {
+        //$j('#w174_0').attr("checked",true); // Hypo
+        $("input[name='w26'][value='25398']").prop('checked', true);
+    }
+
+    if((sbp &gt; 89 &amp;&amp; sbp &lt; 120) &amp;&amp; (dbp &gt; 60 &amp;&amp; dbp &lt; 80)) {
+    //	$j('#w174_1').attr("checked",true); // Normal
+        $("input[name='w26'][value='1115']").prop('checked', true);
+    }
+
+    if((sbp &gt; 119 &amp;&amp; sbp &lt; 139) || (dbp &gt; 79 &amp;&amp; dbp &lt; 90)) {
+    //	$j('#w174_3').attr("checked",true); // Moderate
+        $("input[name='w26'][value='106796']").prop('checked', true);
+    }
+    if(sbp &gt; 139 || dbp &gt; 89) {
+        //$j('#w174_2').attr("checked",true); // SPE
+        $("input[name='w26'][value='106795']").prop('checked', true);
+        $j('#dbptd').css('background-color','red');
+    }
+}
+
+
+
+});
+
+    $('#divid').click(function() {
+
+            // alert("ok");
+			$('#tb30').toggle();
+
+
+		   });
+
+			$('#page1').click(function() {
+
+			$('#tb1').toggle();
+
+
+		   });
+		   $('#page2').click(function() {
+				$('#tb2').toggle();  });
+
+			$('#page3').click(function() {
+				$('#tb3').toggle();  });
+		  $('#page4').click(function() {
+				$('#tb4').toggle();  });
+		  $('#page5').click(function() {
+				$('#tb5').toggle();  });
+		  $('#page6').click(function() {
+				$('#tb6').toggle();  });
+		  $('#page7').click(function() {
+				$('#tb7').toggle();  });
+		  		  $('#page8').click(function() {
+				$('#tb8').toggle();  });
+		  		  $('#page9').click(function() {
+				$('#tb9').toggle();  });
+		  		  $('#page10').click(function() {
+				$('#section2').toggle();  });
+		});
+</script>
+
+
+    <h2>ANC EMERGENCY Rapid Assessment </h2>
+
+    <!--<span style="float: right">Paper Form ID: $paperFormId</span>-->
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode=" ">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                        <!-- encounterLocation id="location" default="2"/-->
+                        <!-- encounterLocation id="location" default="SessionAttribute:emrContext.sessionLocationId"/-->
+                        <!-- encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/-->
+                    </td>
+                    <td>
+                        Provider:
+                        <!--encounterProvider role="Provider"/ -->
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                <!--tr>
+                    <td> Marital status: <lookup expression="fn.latestObs(1054).valueText"/></td>
+                    <td> Previous risk factor: <lookup expression="fn.latestObs(6178).valueText" /></td>
+                </tr-->
+                <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+
+
+        <!-- <section id="page1" headerCode="A. HISTORY" > -->
+        <section>
+            <div id="page1" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">A. History</a></li> </div>
+            <table id="tb1" class="baseline-aligned"  style="display:none">
+
+                <tr><td class="lblcolor">HISTORY OF ANC EMERGENCY</td></tr>
+                <tr><td class="lblcolor"><obs conceptId="106677" answerConceptId="105506" style="checkbox"/></td></tr>
+                <tr><td class="lblcolor"><obs conceptId="106677" answerConceptId="105507" style="checkbox"/></td></tr>
+                <tr><td class="lblcolor"><obs conceptId="106677" answerConceptId="105508" style="checkbox"/></td></tr>
+                <tr><td class="lblcolor"><obs conceptId="106677" answerConceptId="105509" style="checkbox"/></td></tr>
+                <tr><td class="lblcolor"><obs conceptId="106677" answerConceptId="105510" style="checkbox"/></td></tr>
+                <tr><td class="lblcolor"><obs conceptId="106677" answerConceptId="105511" style="checkbox"/></td></tr>
+                <tr><td class="lblcolor"><obs conceptId="106677" answerConceptId="151" style="checkbox"/></td></tr>
+                <!--td><obs conceptId="106677" answerCodes ="High Fever with chills and rigor, Severe headaches Blurred vision, Unconsciousness Convulsion fit Restlessness,Difficulty in breathing Wheezing Cyanosis, weak and rapid pulse greater than 100/min systolic BP bellow 90mmHg, Heavy vaginal bleeding, ABDOMINAL PAIN" style="radio" /></td-->
+
+            </table>
+        </section>
+
+        <!-- <section id="page2" headerCode="B. GENERAL EXAMINATION " >  -->
+        <section>
+            <div id="page2"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none;  font-weight: bold;">B. General Examination</a></li> </div>
+            <table id="tb2" class="baseline-aligned" style="display:none">
+                <tr id="dbptd">
+                    <td class="lblcolor">SBP/DBP (mm Hg)</td>
+                    <td><obs conceptId="5085" id="sbpid" /> / <obs conceptId="5086" id="dbpid" /><obs conceptId="106797" style="radio"/></td>
+                </tr>
+                <!--tr>
+                    <td class="lblcolor">SBP (mm Hg)</td>
+                    <td><obs conceptId="3ce934fa-26fe-102b-80cb-0017a47871b2" style="text" size="25"/></td>
+                </tr-->
+                <tr>
+                    <td class="lblcolor">Pallor </td>
+                    <td><obs conceptId="3ceb16a8-26fe-102b-80cb-0017a47871b2" answerCodes ="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Pulse</td>
+                    <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes ="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Synosis/Sign of shock such as mark pallor cold and clammy extremities/ Rapid pulse (110btts/min or higher)</td>
+                    <td><obs conceptId="a3ae8502-d1d7-4b63-9f94-dc2e28574f09" answerCodes ="Yes,No" style="radio"  /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Weak/Lethargic </td>
+                    <td><obs conceptId="164c7d2d-1d25-4112-8f25-1eb08230c15a" answerCodes ="Yes,No" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Difficulty in breathing / Respiratory distress/Cynosis</td>
+                    <td><obs conceptId="90ebf4df-22a4-4827-be7d-75359c37a1d7" answerCodes ="Yes,No" style="radio" /></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">Level of Unconscious LOC </td>
+                    <td><obs id="locid" conceptId="799d9bc9-ae48-4ff7-8a83-bd8991609f96" answerCodes="Normal,Abnormal" style="radio"/></td>
+                </tr>
+
+                <tr id="loctd" >
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="c1c564ec-69e4-4f81-8e81-2e1f661afda7" rows="3" cols="30" /> </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Temperature °C</td>
+                    <td><obs conceptId="3ce939d2-26fe-102b-80cb-0017a47871b2" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Oxygen saturation</td>
+                    <td><obs id="oxygen"  conceptId="3ce9401c-26fe-102b-80cb-0017a47871b2" style="radio"/></td>
+                </tr>
+                <tr id="oxygentr" >
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="c1c564ec-69e4-4f81-8e81-2e1f661afda7" rows="3" cols="30" /> </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- <section id="page3" headerCode="C. SYSTEMIC EXAMINATION" > -->
+        <section>
+            <div id="page3"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none;  font-weight: bold;">C. Systemic Examination</a></li> </div>
+            <table id="tb3" class="baseline-aligned" style="display:none">
+                <tr>
+
+                    <td>Central nervous system</td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Glasco Coma Scale</td>
+                    <td><obs conceptId="93beb220-39bb-44b5-bc8a-9816d55a3a36" style="text" size="25"/></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">PNeck stiffness</td>
+                    <td><obs conceptId="3cea18ac-26fe-102b-80cb-0017a47871b2" answerCodes ="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Reflexes</td>
+                    <td><obs conceptId="5bdd0069-0916-4972-bf3d-f16b41097117" answerCodes ="Yes,No" style="radio"/></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- <section id="page4" headerCode="D. LUNG exams" > -->
+        <section>
+            <div id="page4"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none;  font-weight: bold;">D. Lung exams </a></li> </div>
+
+            <table id="tb4" class="baseline-aligned" style="display:none">
+                <tr>
+                    <td class="lblcolor">Shallow breathing</td>
+                    <td><obs conceptId="21e6460a-3e1a-4f74-bdd6-a1873f94ff77" answerCodes ="Yes,No" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Signs of consolidation</td>
+                    <td><obs conceptId="75d7fa4b-38cc-424a-9353-29929027800f" answerCodes ="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">wheezing</td>
+                    <td><obs conceptId="cf7300d4-d38a-11e8-b6e2-0c5b8f279a64" answerCodes ="Yes,No" style="radio" /></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">crakles</td>
+                    <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes ="Yes,No" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- <section  id="page5" headerCode="E. Abdominal examination"> -->
+        <section>
+            <div id="page5"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none;  font-weight: bold;">E. Abdominal Examination</a></li> </div>
+
+            <table  id="tb5" class="baseline-aligned"  style="display:none">
+                <tr>
+                    <td class="lblcolor">Fundal height</td>
+                    <td><obs conceptId="51d0c588-374f-4596-aab6-1f9ce8b4e88a" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Fetal heart rate</td>
+                    <td><obs conceptId="57c934dd-a086-4e73-a9b8-3b9c1abef1b1" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">area of tenderness</td>
+                    <td><obs id="tendernessid" conceptId="47c7a66b-68e8-49a1-a5f2-ca139f47009f" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr id="tendernesstr">
+                    <td class="lblcolor">Specify if Yes </td>
+                    <td><obs conceptId="0ed9184f-bb70-4ac8-bf8e-bc1c9ea4032f" rows="3" cols="30" /> </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Position of fetus </td>
+                    <td><obs conceptId="370efbe9-f916-425c-9d3e-8dd1c747be3e" style="radio" /></td>
+                </tr>
+                <!--tr>
+                    <td class="lblcolor">Specify if abnormal </td>
+                    <td><obs conceptId="3dfecd70-5ca6-45b5-8b8e-88245015ccf0" rows="3" cols="30" /> </td>
+                </tr-->
+            </table>
+        </section>
+
+        <!-- <section id="page6" headerCode="F. Vaginal Examination using speculum" > -->
+        <section>
+            <div id="page6"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none;  font-weight: bold;" >F. Vaginal Examination</a></li> </div>
+
+            <table  id="tb6" class="baseline-aligned" style="display:none">
+                <tr>
+                    <td class="lblcolor">Vulva</td>
+                    <td><obs id="vulvaid" conceptId="d1642f47-e2c9-4014-850a-2559548f9016" answerCodes="Normal,Abnormal" style="radio" /></td>
+                </tr>
+                <tr id="vulvatr">
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="f081a61c-101b-4f19-8c29-306ebdf7b587" rows="3" cols="30" /> </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Bleeding </td>
+                    <td><obs id="bleedingid" conceptId="0f3f27e8-949d-4ef3-9c1a-04cb2ac121ff" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr id="bleedingtr">
+                    <td class="lblcolor">Specify if Yes</td>
+                    <td><obs conceptId="31569068-fc17-42ae-8090-e624c337d558" rows="3" cols="30" /> </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Cervical os</td>
+                    <td><obs conceptId="8159" answerConceptIds="1065,1066" answerCodes="Open,Close" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- <section id="page7" headerCode="G. Bimanual "> -->
+        <section>
+            <div id="page7"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none;  font-weight: bold;" >G. Bimanual</a></li> </div>
+
+            <table id="tb7" class="baseline-aligned"  style="display:none">
+                <tr>
+                    <td class="lblcolor">cervical excitation </td>
+                    <td><obs conceptId="ec94aeea-e7ab-4370-8c83-60f719ecedef" answerCodes="Yes,No" style="radio"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Adnexal masses</td>
+                    <td><obs conceptId="6ab46c10-050e-4f7b-89ff-5affd3917039" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Size of the uterus (cm)</td>
+                    <td><obs conceptId="1b69e246-a735-4c76-a0aa-f8b3afdef0a5" style="text" size="25"/></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- <section id="page8" headerCode="H. possible causes of vaginal bleeding" > -->
+        <section>
+            <div id="page8"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none; font-weight: bold;" >H. possible causes of vaginal bleeding</a></li> </div>
+
+            <table id="tb8" class="baseline-aligned" style="display:none">
+                <tr>
+                    <td class="lblcolor">Possible causes of vaginal bleeding</td>
+                    <td ><obs conceptId="106755"  answerCodes="Ectopic Pregancy,Molar pregnancy,Placenta abruption,Uterine rupture,Placenta praevia" style="radio" /></td>
+
+                </tr>
+
+            </table>
+        </section>
+
+        <!-- <section id="page9" headerCode="I. General exams and other exams"> -->
+        <section>
+            <div id="page9"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none;  font-weight: bold;" >I. Physical examination and other exams</a></li> </div>
+
+            <table id="tb9" class="baseline-aligned"  style="display:none">
+                <tr>
+                    <td class="lblcolor">Breasts </td>
+                    <td><obs conceptId="abbbc8a7-d9d0-45a1-bef8-62b7ffee48f1" answerCodes="Tenders," style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Heart of mother</td>
+                    <td><obs id="heartid" conceptId="990219f9-d9a0-4bb2-b1dc-cae7b2672c7a" answerCodes="Normal,Abnormal" style="radio"/></td>
+                </tr>
+                <tr id="hearttr">
+                    <td class="lblcolor">Specify if Abnormal</td>
+                    <td><obs conceptId="f0db2916-e03b-4da8-af92-d7a92f9c6dd2" rows="3" cols="30" /> </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- <section id="page10" headerCode="J. INVESTIGATIONS" > -->
+        <section>
+            <div id="page10"  class="pages"><li><a class="gn-icon gn-icon-cog" style="text-decoration: none; font-weight: bold;" >J. Investigations</a></li> </div>
+
+            <table  class="baseline-aligned" id="section2"  style="display:none">
+                <tr>
+                    <td class="lblcolor">FBC</td>
+                    <td><obs conceptId="490cb6c4-086c-47e8-a107-48b9feb43c81" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">BS/ Malaria</td>
+                    <td><obs conceptId="a7f4e00f-512b-4f92-8b7b-4440a64782cc" answerCodes="Positive,Negative" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Random blood sugar</td>
+                    <td><obs conceptId="4bc81197-8693-416c-b056-a28470f03787" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Urinalysis</td>
+                    <td><obs conceptId="3ccf43b0-26fe-102b-80cb-0017a47871b2" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Blood culture </td>
+                    <td><obs conceptId="105542" answerCodes="Yes,No" style="radio"  /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">biochemistry </td>
+                    <td><obs conceptId="7248" answerCodes="Yes,No" style="radio"  /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Abdominal ultrasound</td>
+                    <td><obs conceptId="845" answerCodes="NORMAL,ABNORMAL,NOT DONE" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Blood group </td>
+                    <td><obs conceptId="3ccf4090-26fe-102b-80cb-0017a47871b2" answerConceptIds="690,692,694,696,699,701,1230,1231" answerCodes="A+ ,A-, B+, B-,O+,O-,AB+,AB-" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Summary of positive and negative findings, and actions taken</td>
+                    <td>
+                        <obs conceptId="d822dc16-78ec-4f25-a3ca-5783bbc1edc8" rows="3" cols="30" />
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section headerCode="Next Visit Date" style="display:none">
+            <obs conceptId="5096" id="nextvisitid" allowFutureDates="true" labelCode="Next Visit Date:"/>
+        </section>
+
+    </includeIf>
+
+    <submit />
+
+
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td>This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+</htmlform>

@@ -1,0 +1,203 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <script type="text/javascript">
+	var $j = jQuery.noConflict();
+	
+	$j(document).ready(function(){
+
+        
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date 
+	});
+</script>
+    <h2>ASSESSMENT BEFORE DISCHARGE</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <section headerCode="Newborn  ">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>KMC tolerated</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Good breastfeeding skills, </td>
+                        <td><obs conceptId="105702" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Normal stable vital signs</td>
+                        <td><obs conceptId="105703" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">weight gain of 15 gr/kg/day for 3 consecutive days, above 1.5kgs </td>
+                        <td><obs conceptId="105704" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+            <section headerCode="Mother">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td><b>KMC well tolerated in the hospital</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Mother consistent and confident in KMC ability, </td>
+                        <td><obs conceptId="105705" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Mother agrees to continue KMC at home</td>
+                        <td><obs conceptId="105706" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Effective breastfeeding skills,</td>
+                        <td><obs conceptId="105707" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Good support from family/community,</td>
+                        <td><obs conceptId="105708" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Mother agrees to comply with OPD follow up visits</td>
+                        <td><obs conceptId="105709" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="C. DISCHARGE OUTCOME">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Final principal  Discharge Diagnosis </td>
+                        <td><obs conceptId="105710" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Final secondary Discharge Diagnosis </td>
+                        <td><obs conceptId="105711" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Discharge weight (KG) </td>
+                        <td><obs conceptId="105712" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Discharge outcome </td>
+                        <td><obs conceptId="105713" answerCodes="Cured,Died,Referred,Absconded" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Place of death </td>
+                        <td><obs conceptId="106623" answerCodes="KMC Unit,Incubator Unit" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Discharge Date</td>
+                        <td><obs conceptId="105667" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Follow-up required?</td>
+                        <td><obs conceptId="105714" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+            </section>
+
+            <section headerCode="D. IF FOLLOW-UP REQUIRED">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Date of first visit</td>
+                        <td><obs conceptId="105715" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Second visit date</td>
+                        <td><obs conceptId="105716" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Third visit date</td>
+                        <td><obs conceptId="105717" style="text" size="25"/></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Observation</td>
+                        <td><obs conceptId="105718" rows="1" cols="30" /> </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

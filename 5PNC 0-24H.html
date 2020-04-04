@@ -1,0 +1,1411 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+		.section {
+			border: 1px solid $headerColor;
+			padding: 2px;
+			text-align: left;
+			margin-bottom: 1em;
+		}
+
+		.sectionHeader {
+			background-color: $headerColor;
+			color: $fontOnHeaderColor;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
+		}
+
+		table.baseline-aligned td {
+			vertical-align: baseline;
+		}
+
+		th.subheader {
+			background-color: $headerColor;
+			color: white
+		}
+
+		.lblcolor {
+			background: #e2e3f2;
+			width: 300px;
+		}
+	</style>
+
+    <style>
+		table.risks td {
+			font-size: 0.9em;
+		}
+
+		.section {
+			border: 1px solid$headerColor;
+			padding: 2px;
+			text-align: left;
+			margin-bottom: 1em;
+		}
+
+		.sectionHeader {
+			background-color: $headerColor;
+			color: $fontOnHeaderColor;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
+		}
+
+		table.baseline-aligned td {
+			vertical-align: center;
+		}
+
+		.pages {
+			display: none;
+		}
+
+		.pageHead {
+			background-color: #009d8e;
+			color: white;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
+			border-style: solid;
+			border-color: white;
+			cursor: pointer;
+		}
+
+	 .pages1:hover {
+			color: blue;
+			background-color: gold;
+		}
+
+		.pages1 {
+			background-color: $headerColor;
+			color: $fontOnHeaderColor;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
+		}
+	</style>
+    <script type="text/javascript">
+		var $j = jQuery.noConflict();
+
+		$j(document).ready(function () {
+			$j('#motherdiv').hide();
+			$j('#nbdiv').hide();
+
+			$j('#page1id').click(function () {
+				$j('#page1').toggle();
+				$j('#page2').hide();
+				$j('#page3').hide();
+				$j('#page4').hide();
+			});
+
+			$j('#page2id').click(function () {
+				$j('#page2').toggle();
+				$j('#page1').hide();
+				$j('#page3').hide();
+				$j('#page4').hide();
+			});
+
+			$j('#page3id').click(function () {
+				$j('#page3').toggle();
+				$j('#page1').hide();
+				$j('#page2').hide();
+				$j('#page4').hide();
+			});
+
+			$j('#page4id').click(function () {
+				$j('#page4').toggle();
+				$j('#page1').hide();
+				$j('#page2').hide();
+				$j('#page3').hide();
+			});
+
+			$j('.pages1').click(function () {
+				var ttleId = $j(this).attr('id');
+				var subTtleId = ttleId.substring(4);
+				$j('#tb' + subTtleId).toggle();
+			});
+
+			$j('#pncVisitid').click(function () {
+				var mother = $j('#pncVisitid input[value="107052"]').attr('checked') ? true : false;
+				var newborn = $j('#pncVisitid input[value="107051"]').attr('checked') ? true : false;
+				if (newborn == true) {
+					$j('#motherdiv').show();
+					$j('#nbdiv').hide();
+				} else if (mother == true) {
+					$j('#motherdiv').hide();
+					$j('#nbdiv').show();
+				} else {
+					$j('#motherdiv').hide();
+					$j('#nbdiv').hide();
+
+				}
+			});
+
+			// encounter date
+			var today = new Date();
+			var dated = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+			setValue('encdateId.value', dated);
+			// end of encounter date
+		});
+	</script>
+    <h2>Assess the mother and newborn within 24 hour after delivery (PNC)</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode=" ">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date" />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation" />
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+                <tr>
+                    <td>Monther's name <b><u>
+                        <lookup expression="patient.personName" /></u></b><br />
+                    </td>
+                    <td>
+                        <!-- {<b>Id:</b><lookup expression="patient.patientIdentifier.identifier"/>; -->
+                        <!-- <b>Sex:</b><lookup expression="patient.gender"/>; -->
+                        <!-- <b>Age:</b><lookup expression="patient.age"/>} -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <obs id="pncVisitid" conceptId="107053" answerConceptIds="107052,107051" style="radio" />
+                    </td>
+
+                </tr>
+            </table>
+        </section>
+        <section>
+        <div id="motherdiv">
+            <div class="pageHead">
+                <h3 id="page1id">HISTORY (PNC 1)</h3>
+            </div>
+
+            <div id="page1" class="pages">
+                <section>
+                    <section headerCode="A. MOTHER">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td class="lblcolor">Age of the mother</td>
+                                <td>
+                                    <obs conceptId="13514" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Parity</td>
+                                <td>
+                                    <obs conceptId="1053" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Gestity</td>
+                                <td>
+                                    <obs conceptId="105578" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Date of delivery</td>
+                                <td>
+                                    <obs conceptId="6954" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Place of delivery</td>
+                                <td>
+                                    <obs conceptId="3528" answerCodes="Hopital,Health Center,Home" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Hour of delivery </td>
+                                <td>
+                                    <obs conceptId="107044" />
+                                </td>
+                                <!-- <td><obs conceptId="8160" answerCodes="Male,Femme" style="radio" /></td> -->
+                            </tr>
+                            <td><b>1. Maternal Outcome"</b></td>
+                            <tr>
+                                <td class="lblcolor">Mother outcome </td>
+                                <td>
+                                    <obs conceptId="8163" answerConceptIds="2895,1742,1852"
+                                         answerCodes="Mother alive,Mother died,Mother critically ill" style="radio" />
+                                </td>
+                            </tr>
+                            <td><b>2. Newborn Outcome"</b></td>
+                            <tr>
+                                <td class="lblcolor">Mother outcome </td>
+                                <td>
+                                    <obs conceptId="106608" answerConceptIds="6543,105766,8179,105767,105768,105769"
+                                         answerCodes="ALIVE, LBW/ELBW, Preterm, Still birth, death within 30 min, Death within 24hr"
+                                         style="radio" />
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                            <td class="lblcolor">Head circumference</td>
+                            <td><obs conceptId="5314" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Height</td>
+                            <td><obs conceptId="5090" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Weight at birth</td>
+                            <td><obs conceptId="5916" /></td>
+                        </tr> -->
+                        </table>
+                    </section>
+                </section>
+
+                    <section headerCode="B. Clinical examination of the mother">
+                        <!-- <table class="baseline-aligned">
+                        <tr>
+                            <td><obs conceptId="106609" answerConceptIds="105506,105507,8520,105508,105770,105511,105467,105771,105772" answerCodes="High Fever with chills rigor, Severe headaches Blurred vision, Vaginal Bleeding, Unconsciousness/Convulsion/ fit/Restlessness, Cyanosis/ sign of impending shock such as mark pallor cold and clammy extremities weak and rapid pulse (greather than 100/min) systolic BP (less than90mmHg), Heavy vaginal bleeding, Abdominal pains, Pain in perineal wound, Difficulty in urination" style="radio" /></td>
+                        </tr>
+                    </table> -->
+
+                        <table id="tb2" class="baseline-aligned">
+                            <tr>
+                                <td class="lblcolor"><b>Vital Signs</b></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Pain Score </td>
+                                <td>
+                                    <obs conceptId="13426" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Temperature </td>
+                                <td>
+                                    <obs conceptId="5088" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">BP </td>
+                                <td>
+                                    <obs conceptId="105590" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Volume of Pulse </td>
+                                <td>
+                                    <obs conceptId="5087" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Respiratory rate</td>
+                                <td>
+                                    <obs conceptId="5242" />
+                                </td>
+                            </tr>
+
+
+
+                        </table>
+                        <table id="tb1" class="baseline-aligned">
+                            <tr>
+                                <td class="lblcolor"><b>Danger signs</b></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105506" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105507" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105583" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105508" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105770" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105511" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105467" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105771" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="105772" style="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">
+                                    <obs conceptId="106609" answerConceptId="206" style="checkbox" />
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+            </div>
+            <section>
+            <div class="pageHead">
+                <h3 id="page2id">EXAMINATION (PNC 1)</h3>
+            </div>
+
+            <div id="page2" class="pages">
+                <section>
+                    <section headerCode="A. Type of delivery">
+
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td class="lblcolor"><b>1.Normal vaginal delivery</b></td>
+                                <td>
+                                    <obs conceptId="105779" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor"><b>2.Assisted vaginal delivery, vacuum</b></td>
+                                <td>
+                                    <obs conceptId="10991" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Check for completeness of placenta and membranes</td>
+                                <td>
+                                    <obs conceptId="106885" answerCodes="Complete,Incomplete" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Assess general maternal well-being (blood pressure, body
+                                    temperature)</td>
+                                <td>
+                                    <obs conceptId="105781" answerCodes="Normal,Abnormal" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Check for pallor (conjunctiva and palms)</td>
+                                <td>
+                                    <obs conceptId="105782" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Check perineum for tears</td>
+                                <td>
+                                    <obs conceptId="105783" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Inflammation</td>
+                                <td>
+                                    <obs conceptId="105784" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Discharge</td>
+                                <td>
+                                    <obs conceptId="11315" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Check for uterine contraction</td>
+                                <td>
+                                    <obs conceptId="105785" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Feel if uterus is hard and round</td>
+                                <td>
+                                    <obs conceptId="105786" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor"><b>3.C-section</b></td>
+                                <td>
+                                    <obs conceptId="1171" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Pain</td>
+                                <td>
+                                    <obs conceptId="6896" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Sedation</td>
+                                <td>
+                                    <obs conceptId="105773" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                            <td class="lblcolor">Respiratory rate</td>
+                            <td><obs conceptId="5242" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">BHeart rate</td>
+                            <td><obs conceptId="5087" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">BP </td>
+                            <td><obs conceptId="105590"/></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Temperature </td>
+                            <td><obs conceptId="5088" /></td>
+                        </tr> -->
+                            <tr>
+                                <td class="lblcolor">Intravenous infusions</td>
+                                <td>
+                                    <obs conceptId="105774" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Vaginal loss</td>
+                                <td>
+                                    <obs conceptId="105775" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Urinary output</td>
+                                <td>
+                                    <obs conceptId="105776" answerCodes="Normal,Abnormal" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Surgical site drainage and wound</td>
+                                <td>
+                                    <obs conceptId="105777" answerCodes="Normal,Abnormal" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Higher risk of Thromboembolism</td>
+                                <td>
+                                    <obs conceptId="105778" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+
+                            <!--tr>
+                            <td class="lblcolor"><b>2.Normal vaginal delivery</b></td>
+                            <td><obs conceptId="105779" answerCodes="Yes,No" style="radio"/></td>
+                        </tr-->
+
+                            <!-- <tr>
+                            <td class="lblcolor"><b>3.Assisted vaginal delivery forceps</b></td>
+                            <td><obs conceptId="105780" answerCodes="Yes,No" style="radio"/></td>
+                        </tr> -->
+
+
+                        </table>
+                    </section>
+                </section>
+
+                    <section headerCode="B. Any difficulties at birth ?">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td class="lblcolor">Record the difficulties that were faced during birth</td>
+                                <td>
+                                    <obs conceptId="105787" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Summary of positive and negative findings and actions taken</td>
+                                <td>
+                                    <obs conceptId="105532" raw="3" style="text" />
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+            </div>
+
+            <section>
+            <div class="pageHead">
+                <h3 id="page3id">EXAMINATION (BEFR DISCHARGE)</h3>
+            </div>
+
+            <div id="page3" class="pages">
+                <section>
+                    <section headerCode="A. Assessing mother breast feeding">
+                        <table class="baseline-aligned">
+                            <td><b>History since delivery</b></td>
+                            <tr>
+                                <td class="lblcolor">Mother is not breast feeding</td>
+                                <td>
+                                    <obs conceptId="105788" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <td><b>Examination</b></td>
+                            <tr>
+                                <td class="lblcolor">Incorrect breastfeeding position and attachment </td>
+                                <td>
+                                    <obs conceptId="105789" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section headerCode="B. Examine mother">
+                        <table class="baseline-aligned">
+                            <td><b>Head and neck</b></td>
+                            <tr>
+                                <td class="lblcolor">Pallor</td>
+                                <td>
+                                    <obs conceptId="5245" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Stiff neck</td>
+                                <td>
+                                    <obs conceptId="5170" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Swelling</td>
+                                <td>
+                                    <obs conceptId="6001" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Other</td>
+                                <td>
+                                    <obs conceptId="12942" style="text" />
+                                </td>
+
+
+                            </tr>
+                            <!-- <tr><td><b>Verify normal vital signs for Mother:</b></td></tr>
+                        <tr>
+                            <td class="lblcolor">Temperature</td>
+                            <td><obs conceptId="5088" style="text" /></td>
+                        </tr>
+                        <tr><td class="lblcolor">Temperature &#60; 38.0&#176;C</td>
+                            <td><obs conceptId="105790" answerCodes="Yes,No" style="radio" /></td>
+                        </tr>
+                        <tr> <td class="lblcolor">DBP</td>
+                            <td><obs conceptId="5086" style="text" /></td>
+                        </tr>
+                        <tr> <td class="lblcolor">SBP</td>
+                            <td><obs conceptId="5085" style="text"  /></td>
+                        </tr>
+                        <tr> <td class="lblcolor">Heart rate</td>
+                            <td><obs conceptId="5087" style="text" /></td>
+                        </tr>
+                        <tr>
+                            <td class="lblcolor">Heart rate &#60; 100 beats per minute</td>
+                            <td><obs conceptId="105791" answerCodes="Yes,No" style="radio" /></td>
+                        </tr> -->
+                            <tr>
+                                <td><b>Check for breast</b></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor"><b>Chest examination</b></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Lung auscultation</td>
+                                <td>
+                                    <obs conceptId="107046" answerCodes="Normal,Abnormal" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Heart auscultation</td>
+                                <td>
+                                    <obs conceptId="107047" answerCodes="Normal,Abnormal" style="radio" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Breast Examination</b></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor"><b>Chest examination</b></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Presence of colostrum</td>
+                                <td>
+                                    <obs conceptId="107048" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Breast engorgement</td>
+                                <td>
+                                    <obs conceptId="107049" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Other </td>
+                                <td>
+                                    <obs conceptId="12942" style="text" size="25" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td><b>Abdominal Examination</b></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Abdominal distention</td>
+                                <td>
+                                    <obs conceptId="12896" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Abdominal tenderness </td>
+                                <td>
+                                    <obs conceptId="105799" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Uterine involution measurement </td>
+                                <td>
+                                    <obs conceptId="107050" style="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Other findings </td>
+                                <td>
+                                    <obs conceptId="12967" style="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Perineal Examination </b></td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Vaginal bleeding</td>
+                                <td>
+                                    <obs conceptId="8520" answerCodes="Yes,No" style="radio" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">if yes specify </td>
+                                <td>
+                                    <obs conceptId="105802" style="text" size="25" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Perineal tenderness </td>
+                                <td>
+                                    <obs conceptId="105803" answerCodes="Yes,No" style="radio" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Perineal bruising </td>
+                                <td>
+                                    <obs conceptId="105804" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Any pus discharge from perineal wound </td>
+                                <td>
+                                    <obs conceptId="105805" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Any leakage of urine from vagina</td>
+                                <td>
+                                    <obs conceptId="105806" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Any leakage of faeces from vagina</td>
+                                <td>
+                                    <obs conceptId="105807" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Perineal tear</td>
+                                <td>
+                                    <obs conceptId="8290" answerConceptIds="8290" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">if yes specify wich degree </td>
+                                <td>
+                                    <obs conceptId="105808" style="text" size="25" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Confirm syphilis and HIV testing</td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">HIV status</td>
+                                <td>
+                                    <obs conceptId="3753" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Verify that the mother and newborn have received antiretrovirals
+                                </td>
+                                <td>
+                                    <obs conceptId="2589" answerConceptIds="1065,1066" answerCodes="Yes,No"
+                                         style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">A follow-up plan is clearly communicated</td>
+                                <td>
+                                    <obs conceptId="105801" answerCodes="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lblcolor">Syphilis Exams</td>
+                                <td>
+                                    <obs conceptId="223" answerCodes="Negative,Positive" style="radio" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="lblcolor">Summary of positive and negative findings, and recommandation</td>
+                                <td>
+                                    <obs conceptId="105532" rows="1" cols="30" />
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+                </section>
+            </div>
+            </section>
+
+
+           <section>
+            <div class="pageHead">
+                <h3 id="page4id">TREATMENT (BEFR DISCHARGE)</h3>
+            </div>
+
+            <div id="page4" class="pages">
+                <section>
+                    <section headerCode="A. Preventative treatment">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td>
+                                    <obs conceptId="8163" answerConceptIds="4063,9213"
+                                         answerCodes="Vitamin A capsule, Iron" style="radio" />
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section headerCode="B. Confirm conseling to Mother ">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td>
+                                    <obs conceptId="8163" answerConceptIds="1180,5483,105811"
+                                         answerCodes=" Postpartum, Family planning services, Encourage drinking (including water )"
+                                         style="radio" />
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section headerCode="C. Counsel the mother and family on">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td>
+                                    <obs conceptId="106606"
+                                         answerConceptIds="105812,105814,105815,105816,105818,105819,105820"
+                                         answerCodes="Hand washing general hygiene and cord care, Keeping the baby warm, Danger signs for baby and mother (see above), Signs of postpartum depression,  Sleeping under a long-lasting insecticide-treated net, Exclusive breastfeeding,Resuming sexual relations and ensuring safe sex "
+                                         style="radio" />
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section headerCode="C. Remind the mother about ">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td>
+                                    <obs conceptId="106607" answerConceptIds="105821,105822,105823"
+                                         answerCodes="3 postnatal care visits in the first 6 weeks: at 3 days, 7-14 days, and 6 weeks, Baby's immunizations, Follow-up family planning"
+                                         style="radio" />
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+                </section>
+            </div>
+           </section>
+
+        <section>
+        <div id="nbdiv">
+
+            <section>
+                <div id="page5" class="pages1">
+                    <li><a class="gn-icon gn-icon-cog" style="text-decoration: none; font-weight: bold;">A. Newborn
+                        Examination</a></li>
+                </div>
+                <table id="tb5" class="baseline-aligned" style="display:none">
+
+                    <tr>
+                        <td class="lblcolor"><b>1. Vital Signs</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Temperature </td>
+                        <td>
+                            <obs conceptId="5088" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiratory rate(RR)</td>
+                        <td>
+                            <obs conceptId="5242" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Volume of Pulse(Heart Rate) </td>
+                        <td>
+                            <obs conceptId="5087" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">CRT </td>
+                        <td>
+                            <obs conceptId="13426" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">SPO </td>
+                        <td>
+                            <obs conceptId="105590" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>2. Measurements</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Weight infant(Kg)</td>
+                        <td>
+                            <obs conceptId="105795" style="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Measure length of infant(cm)</td>
+                        <td>
+                            <obs conceptId="105796" style="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Head circonference</td>
+                        <td>
+                            <obs conceptId="5314" style="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>3. Danger signs</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="8616" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="13366" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="105788" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="206" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="105508" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="107054" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="801" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="106309" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="106308" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="107055" style="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">
+                            <obs conceptId="106609" answerConceptId="215" style="checkbox" />
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+        </section>
+            <!-- <section headerCode="A. Danger Signs">
+                <table id="tb1born" class="baseline-aligned">
+
+                </table>
+            </section> -->
+            <section>
+                <div id="page6" class="pages1">
+                    <li><a class="gn-icon gn-icon-cog" style="text-decoration: none; font-weight: bold;">B. Others</a>
+                    </li>
+                </div>
+                <table id="tb6" class="baseline-aligned" style="display:none">
+
+                    <tr>
+                        <!-- <td class="lblcolor"><b>Others</b></td> -->
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Skin lesion (Pustules)</td>
+                        <td>
+                            <obs conceptId="105981" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">if yes how many</td>
+                        <td>
+                            <obs conceptId="107056" style="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">No stool for 24h</td>
+                        <td>
+                            <obs conceptId="107057" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Severe vomiting</td>
+                        <td>
+                            <obs conceptId="107058" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pus from the eyes</td>
+                        <td>
+                            <obs conceptId="107059" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <div id="page7" class="pages1">
+                    <li><a class="gn-icon gn-icon-cog" style="text-decoration: none; font-weight: bold;">C. Full
+                        Examination</a></li>
+                </div>
+                <table id="tb7" class="baseline-aligned" style="display:none">
+                    <!--
+            <section headerCode="C. Full Examination">
+                <table id="tb31" class="baseline-aligned"> -->
+                    <tr>
+                        <td class="lblcolor"><b>Skin</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Skin color</td>
+                        <td>
+                            <obs conceptId="105981" answerConceptIds="107063,13628,41050,41051"
+                                 answerCodes="Pink,Yellow,Cyanosis,Pallor" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Head</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Fontanelle</td>
+                        <td>
+                            <obs conceptId="105981" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Suture</td>
+                        <td>
+                            <obs conceptId="13291" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Birth trauma</td>
+                        <td>
+                            <obs conceptId="107066" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Eyes</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check eyes</td>
+                        <td>
+                            <obs conceptId="107070" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Nose</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check Nose</td>
+                        <td>
+                            <obs conceptId="107071" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Ears</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check ears</td>
+                        <td>
+                            <obs conceptId="107072" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Mouth</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check mouth</td>
+                        <td>
+                            <obs conceptId="107072" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Neck</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check neck</td>
+                        <td>
+                            <obs conceptId="11651" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Chest</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Clavicules</td>
+                        <td>
+                            <obs conceptId="10218" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Sternum ribs</td>
+                        <td>
+                            <obs conceptId="107073" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">hungs </td>
+                        <td>
+                            <obs conceptId="107073" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">heart</td>
+                        <td>
+                            <obs conceptId="105514" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Breast</td>
+                        <td>
+                            <obs conceptId="11304" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor"><b>Abdomen</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Destension</td>
+                        <td>
+                            <obs conceptId="107067" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Intact</td>
+                        <td>
+                            <obs conceptId="8180" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Cord clean and dry</td>
+                        <td>
+                            <obs conceptId="107069" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>genital abscess</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Male</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Presence of testicule in scrotum</td>
+                        <td>
+                            <obs conceptId="107074" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Other malformation</td>
+                        <td>
+                            <obs conceptId="107075" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Female</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Blood dischage</td>
+                        <td>
+                            <obs conceptId="107075" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Anus</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Present</td>
+                        <td>
+                            <obs conceptId="107077" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Extremities</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Arms</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check for arms move</td>
+                        <td>
+                            <obs conceptId="107080" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Check for syndactily polydactily</td>
+                        <td>
+                            <obs conceptId="107080" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Legs</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Legs dislocation</td>
+                        <td>
+                            <obs conceptId="107082" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Club feet</td>
+                        <td>
+                            <obs conceptId="107083" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Mobility of feet</td>
+                        <td>
+                            <obs conceptId="107084" answerConceptIds="1115,1116" answerCodes="Normal,Abnormal"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Syndactily PolydactilY </td>
+                        <td>
+                            <obs conceptId="107085" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Symetric Knees </td>
+                        <td>
+                            <obs conceptId="107086" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Back</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Stright</td>
+                        <td>
+                            <obs conceptId="107087" style="radio" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Malformation</td>
+                        <td>
+                            <obs conceptId="107075" style="radio" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Others</td>
+                        <td>
+                            <obs conceptId="106759" style="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor"><b>Neuro</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Upper and Lower tonus</td>
+                        <td>
+                            <obs conceptId="107088" style="radio" />
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Reflexes</td>
+                        <td>
+                            <obs conceptId="107093" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Severe vomiting</td>
+                        <td>
+                            <obs conceptId="107058" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Pus from the eyes</td>
+                        <td>
+                            <obs conceptId="107059" answerCodes="Yes,No" style="radio" />
+                        </td>
+
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <div id="page8" class="pages1">
+                    <li><a class="gn-icon gn-icon-cog" style="text-decoration: none; font-weight: bold;">D.
+                        Immunizations Status</a></li>
+                </div>
+                <table id="tb8" class="baseline-aligned" style="display:none">
+                    <!-- <section headerCode="D. Immunizations Status">
+                <table> -->
+                    <!-- <tr>
+                        <td><b>Verify normal vital signs for Newborn:</b></td>
+                    </tr> -->
+                    <!-- <tr>
+                        <td class="lblcolor">Respiration</td>
+                        <td>
+                            <obs conceptId="5242" style="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Respiration &#60; 60 beats per minute</td>
+                        <td>
+                            <obs conceptId="105792" answerCodes="Normal,Abnormal" style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Temperature</td>
+                        <td>
+                            <obs conceptId="5088" style="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Temperature 36.5-37.5&#176;C axillary</td>
+                        <td>
+                            <obs conceptId="105793" answerCodes="Normal,Abnormal" style="radio" />
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td class="lblcolor">Confirm newborn immunizations have been given and linked to immunization
+                            register</td>
+                        <td>
+                            <obs conceptId="105794" answerCodes="Yes,No" style="radio" />
+                        </td>
+                    </tr>
+                    <!--
+                    <tr>
+                        <td class="lblcolor">MUAC of mother</td>
+                        <td>
+                            <obs conceptId="105797" style="text" />
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td><b>Check for breast</b></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Nipple retraction </td>
+                        <td>
+                            <obs conceptId="105798" answerCodes="Yes,No" style="radio" />
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            </section>
+        </div>
+        </section>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr>
+                    <td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

@@ -1,0 +1,401 @@
+<htmlform>
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+	  border-left: 1px solid #000;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+
+table.risks td {
+	font-size: 0.9em;
+}
+
+.pages:hover {
+  color: gold;
+  background-color: gold;
+}
+.pageHead {
+	background-color: #009d8e;
+    color: white;
+    display: block;
+    padding: 2px;
+    font-weight: bold;
+	border-style: solid;
+	border-color: white;
+	cursor: pointer;
+}
+</style>
+    <translations defaultLocale="en">
+        <code name="lmp">
+            <variant locale="en" value="First day of last menstral period "/>
+            <variant locale="fr" value="Date des dernières règles "/>
+        </code>
+        <code name="tested">
+            <variant locale="en" value="Has she been tested for HIV/AIDS?"/>
+            <variant locale="fr" value="Est-ce que le patient a subi un test de dépistage du VIH?"/>
+        </code>
+        <code name="due_date">
+            <variant locale="en" value="Approximate date of delivery"/>
+            <variant locale="fr" value="Date probable d'accouchement"/>
+        </code>
+    </translations>
+
+
+    <script type="text/javascript">
+
+	var $j = jQuery.noConflict();
+	$j(document).ready(function(){
+        $j('#page1').click(function() {
+		  $j('#tb1').toggle();
+          $j('#tb2').toggle();
+		  });
+
+          $j('#page2').click(function() {
+		  $j('#tb3').toggle();
+          $j('#tb4').toggle();
+          $j('#tb5').toggle();
+		  });
+
+          $j('#page3').click(function() {
+		  $j('#tb6').toggle();
+          $j('#tb7').toggle();
+		  });
+
+
+
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	});
+</script>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section>
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+
+        <!--section headerLabel="PARTOGRAM">
+            <table-->
+        <section>
+            <div id="page1" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">PARTOGRAM</a></li> </div>
+            <table id="tb1" class="baseline-aligned"  style="display:none">
+
+                <tr>
+                    <obsgroup groupingConceptId="1114">
+                        <td class="lblcolor">Vital sign</td>
+                        <td><obs conceptId="5088" labelText="Temperature:" /></td>
+                        <td><obs conceptId="5089" labelText="Weight:" required="" /></td>
+                        <td><obs conceptId="5090" labelText="Height:" /></td>
+                        <td><obs conceptId="5085" labelText="SBP:" /></td>
+                        <td><obs conceptId="5086" labelText="DBP:" /></td>
+                        <td><obs conceptId="5087" labelText="Pulse:" /></td>
+                    </obsgroup>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Sign of impending shock if mother is bleeding</td>
+                    <td><obs conceptId="105591" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Weak/Lethargic</td>
+                    <td><obs conceptId="105539" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Difficulty in breathing / Respiratory distress/Cynosis</td>
+                    <td><obs conceptId="105592" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Level of Unconsciousness LOC </td>
+                    <td><obs conceptId="105540" answerCodes="Normal,Abnormal" style="radio" /></td>
+                </tr>
+            </table>
+            <table id="tb2" class="baseline-aligned"  style="display:none">
+                <tr>
+                    <td class="lblcolor">Poche (Liquide amniotique)</td>
+                    <td>
+                        <obs conceptId="10126" style="radio"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Abd. hauteur uterine</td>
+                    <td>
+                        <obs conceptId="8145"/> /cm
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Number of contractions</td>
+                    <td>
+                        <obs conceptId="10049"/>
+                        /10 minutes
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Ocytocin</td>
+                    <td>
+                        <obs conceptId="105470"/> /Litre
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Oxytocin Goutte</td>
+                    <td>
+                        <obs conceptId="105471"/> /min
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Tonus</td>
+                    <td>
+                        <obs conceptId="10050" style="radio"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">Evaluation du bassin</td>
+                    <td>
+                        <obs conceptId="10057" style="radio"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">T.V. Dilatation</td>
+                    <td>
+                        <obs conceptId="10109"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Oedème du col</td>
+                    <td>
+                        <obs conceptId="10058" style="radio"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Bosse (TBD)</td>
+                    <td>
+                        <obs conceptId="10059" style="radio"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">BCF (Bruit de coeur foetal)</td>
+                    <td>
+                        <obs conceptId="10054" style="radio"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Fetal position</td>
+                    <td><obs conceptId="105525" answerCodes="Normal,Abnormal" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Fetal tachycardia/bradycardia</td>
+                    <td><obs conceptId="3361" style="text" size="25" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Baby presentation</td>
+                    <td><obs conceptId="8149" answerConceptId="8147" style="radio"/> </td>
+                    <td><obs conceptId="8149" answerConceptId="8148" style="radio"/> </td>
+                    <td><obs conceptId="8149" answerConceptId="8539" style="radio"/> </td>
+                    <td><obs conceptId="8149" answerConceptId="10060" style="radio"/> </td>
+
+                </tr>
+                <tr>
+                    <td class="lblcolor">Progress and descent of the fetal head</td>
+                    <td>
+                        <obs conceptId="105610" style="radio"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <fieldset>
+                            <legend><b>Ecoulement</b></legend>
+                            <table>
+                                <tr>
+                                    <td class="lblcolor">Odeur</td>
+                                    <td>
+                                        <obs conceptId="10062" style="radio"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="lblcolor">Couleur</td>
+                                    <td>
+                                        <obs conceptId="10133" style="radio"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <br/>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <div id="page2" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">Risk factors on Examination</a></li> </div>
+            <table id="tb3" class="baseline-aligned"  style="display:none">
+                <!--section headerCode="Risk factors on Examination">
+                    <table class="baseline-aligned"-->
+                <tr>
+                    <td class="lblcolor">Breech presentation</td>
+                    <td><obs conceptId="8539" answerCodes="Favorable,Unfavorable" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Transverse lie</td>
+                    <td><obs conceptId="105584" answerCodes="Favorable,Unfavorable" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Small pelvis/CPD</td>
+                    <td><obs conceptId="8527" answerCodes="Favorable,Unfavorable" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Poor progress of labour</td>
+                    <td><obs conceptId="105585" answerCodes="Favorable,Unfavorable" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Foul smelling vaginal discharge</td>
+                    <td><obs conceptId="105586" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Premature &#60; 37 weeks</td>
+                    <td><obs conceptId="106874" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">High BP</td>
+                    <td><obs conceptId="106875" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+            </table>
+            <table id="tb4" class="baseline-aligned"  style="display:none">
+                <tr>
+                    <td class="lblcolor">Triage</td>
+                    <td>
+                        <b> <font color="red"><obs conceptId="106888" answerConceptId="106889" labelText="" style="radio"/></font></b>
+                    </td>
+                    <td>
+                        <b> <font color="amber"><obs conceptId="106888" answerConceptId="106890" labelText="" style="radio"/></font></b>
+                    </td>
+                    <td>
+                        <b>  <font color="yellow"><obs conceptId="106888" answerConceptId="106891" labelText="" style="radio"/></font></b>
+                    </td>
+                    <td>
+                        <b>   <font color="green"><obs conceptId="106888" answerConceptId="106892" labelText="" style="radio"/></font></b>
+                    </td>
+                    <td>
+                        <b>  <font color="blue"><obs conceptId="106888" answerConceptId="106893" labelText="" style="radio"/></font></b>
+                    </td>
+                </tr>
+            </table>
+            <table id="tb5" class="baseline-aligned"  style="display:none">
+                <tr>
+                    <td class="lblcolor">Clinical notes</td>
+                    <td><obs conceptId="12933" style="textarea"  row="4" cols="50"/></td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <div id="page3" class="pages">
+                <li><a class="gn-icon gn-icon-cog"  style="text-decoration: none; font-weight: bold;">Medication List</a></li> </div>
+            <table id="tb6" class="baseline-aligned"  style="display:none">
+                <!--section headerLabel="LISTE DES MEDICAMENTS/ MEDICATION LIST">
+                    <table cellspacing="0" cellpadding="6" width="100%" style="background-color:AliceBlue"-->
+                <tr class="strong">
+                    <th>Drugs Administrated</th>
+                    <th>Frequancy</th>
+                    <th>DateTime</th>
+                    <th>Route</th>
+                </tr>
+                <obsgroup groupingConceptId="106915">
+                    <tr>
+                        <td>
+                            <!-- Drud -->
+                            1. R/
+                            <obs conceptId="3193" style="textarea" rows="1" cols="30"/>
+                        </td>
+                        <td>
+                            <!-- Frequancy -->
+                            <obs conceptId="3097" style="textarea" rows="1" cols="30"/>
+                        </td>
+                        <td>
+                            <encounterDate showTime="true" default="now"/>
+                        </td>
+                        <td>
+                            <!-- Route -->
+                            <obs conceptId="3329" />
+                        </td>
+                    </tr>
+                </obsgroup>
+            </table>
+            <!--table  id="tb7" cellspacing="0" cellpadding="6" width="100%" style="background-color:AliceBlue">
+                <tr class="strong">
+                    <th>Drugs Administrated</th>
+                    <th>Frequancy</th>
+                    <th>DateTime</th>
+                    <th>Route</th>
+                </tr>
+                <obsgroup groupingConceptId="106915">
+                    <tr>
+                        <td>
+
+                            1. R/
+                            <obs conceptId="3193" style="textarea" rows="3" cols="30"/>
+                        </td>
+                        <td>
+                            <obs conceptId="3097" style="textarea" rows="3" cols="30"/>
+                        </td>
+                        <td>
+                            <encounterDate showTime="true" default="now"/>
+                        </td>
+                        <td>
+                            <obs conceptId="3329" />
+                        </td>
+                    </tr>
+                </obsgroup>
+            </table-->
+        </section>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td >This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>

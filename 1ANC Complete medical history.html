@@ -1,0 +1,64 @@
+<htmlform>
+    <macros>
+        paperFormId = (Fill this in)
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+
+    <script>
+	$j('div.addAnother').hide();
+        $j("#htmlFormEntryBanner").hide();
+
+</script>
+
+    <style>
+		.section {
+			border: 1px solid $headerColor;
+			padding: 2px;
+			text-align: left;
+			margin-bottom: 1em;
+		}
+		.sectionHeader {
+			background-color: $headerColor;
+			color: $fontOnHeaderColor;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
+		}
+		table.baseline-aligned td {
+			vertical-align: baseline;
+		}
+		th.subheader {
+		background-color: $headerColor;
+		color:white
+		}
+	</style>
+
+
+    <table>
+        <div>
+            <section headerLabel="Enrolment History ">
+                <htmlformflowsheet formId="217" windowHeight="450"/>
+            </section>
+        </div>
+        <div>
+            <section headerLabel="Followup History">
+                <htmlformflowsheet formId="209" windowHeight="400"/>
+            </section>
+        </div>
+        <div>
+            <section headerLabel="Emergency History">
+                <htmlformflowsheet formId="139"  windowHeight="400"/>
+            </section>
+        </div>
+    </table>
+
+
+
+    <!--
+        <center>
+        <submit submitLabel="Close Flowsheet" />
+    </center>
+         -->
+
+</htmlform>

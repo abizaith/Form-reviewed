@@ -1,0 +1,211 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+</style>
+    <h2>Physical Examination Adult</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+
+        <section >
+
+
+            <section headerCode="A. From Health centre to District Hospital">
+                <table class="baseline-aligned">
+
+                    <tr>
+                        <td class="lblcolor">Newborns weight &#60;2kgs?</td>
+                        <td><obs conceptId="9dd0add4-d931-4f21-af58-0ba0fb8c0f49" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Any neonate not doing well</td>
+                        <td><obs conceptId="e32cb25a-52d3-4b3b-8ea8-62cef0437193" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+
+                <table class="baseline-aligned">
+
+                    <tr>
+                        <td><obs conceptId="f8f9843a-2598-4752-b50d-501d2cbebd1a" style="checkbox" /></td>
+                        <td><obs conceptId="3db3f3d3-811b-43da-ae76-7d07a0bba412" style="checkbox" /></td>
+                        <td><obs conceptId="3cd20974-26fe-102b-80cb-0017a47871b2" style="checkbox" /></td>
+                        <td><obs conceptId="efc35b8f-6ded-41d4-a3d1-85558f26d805" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="82c90fb9-9818-452f-b409-ea5737bb4d8a" style="checkbox" /></td>
+                        <td><obs conceptId="3ccea1bc-26fe-102b-80cb-0017a47871b2" style="checkbox" /></td>
+                        <td><obs conceptId="f19ee328-fa1e-4dd6-b7bf-1d70f5e018a2" style="checkbox" /></td>
+                        <td><obs conceptId="1c18c77d-99cf-43b6-923b-016942bb252e" style="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td><obs conceptId="1827dced-11b8-4bdf-97fd-49727d19ab56" style="checkbox" /></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
+
+                <table class="baseline-aligned">
+
+                    <tr>
+                        <td class="lblcolor">Suspicion of birth asphyxia </td>
+                        <td><obs conceptId="89514606-c024-4f54-99e8-849ca9615bfd" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">baby who was resuscitated </td>
+                        <td><obs conceptId="f6ee0453-edfa-4882-8f06-8bb0466b02ad" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                </table>
+
+            </section>
+            <section headerCode="From District to Provincial  hospital">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Newborn with RD ? </td>
+                        <td><obs conceptId="46cd6d96-1ea8-4bbb-a687-1e3ca09741f3" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Newborn &#60;1.5kgs</td>
+                        <td><obs conceptId="5a76b2f9-094f-4af5-a7e3-7f6bdddc717e" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Vital signs not normalizing despite all interventions tried  </td>
+                        <td><obs conceptId="eea4257a-3aef-4346-af4d-013d798fac0a" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                </table>
+            </section>
+
+            <section headerCode="From Provincial to Referral Hospital">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Need Surgery or require a service not available at Provincial Hospital </td>
+                        <td><obs conceptId="3dd737ec-ea2d-462e-8d06-b7c3d72e9846" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="lblcolor">Neonate &#60;1000 grams </td>
+                        <td><obs conceptId="6fbd87e5-5022-4007-bea1-0f998aa06712" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Neonate who is not tolerating feeds </td>
+                        <td><obs conceptId="e652b129-adfb-4164-9b6a-339dc961a91f" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">having bilious vomiting </td>
+                        <td><obs conceptId="fbf559e7-13f8-4f4a-ac90-8b7a05309ace" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">having difficulty in gaining weight on full enteral feeds after 14 days of life </td>
+                        <td><obs conceptId="a8ee7dcd-5e46-4772-9007-c0765794d227" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">lack of response to treatment</td>
+                        <td><obs conceptId="56b191af-bed4-4efa-85a2-ef3522410594" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Need for advanced respiratory support </td>
+                        <td><obs conceptId="1ad769ef-9d61-4104-a931-1242cfbc96da" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="lblcolor">Neonate with sepsis resistant to treatment </td>
+                        <td><obs conceptId="68cfe184-c7e7-4127-babf-cde4069dd12d" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Persistent fever </td>
+                        <td><obs conceptId="ff9c7883-4b26-484c-8e6a-5d24d7cb5ecc" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">hypothermia </td>
+                        <td><obs conceptId="7d84205d-aaa4-4c7f-94bc-ee2b08576429" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>              <tr>
+                    <td class="lblcolor">tachycardia </td>
+                    <td><obs conceptId="df858906-3d5b-4f40-b606-ac99315a27df" answerCodes="Yes,No" style="radio" /></td>
+                </tr>              <tr>
+                    <td class="lblcolor">poor perfusio</td>
+                    <td><obs conceptId="ddeb4b1f-203a-4459-b0ef-02fc4b211fa3" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                    <tr>
+                        <td class="lblcolor">Newborn with persistent jaundice </td>
+                        <td><obs conceptId="b634260f-a5cb-495f-8bc2-ed09a91dcfe9" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">need exchange transfusion</td>
+                        <td><obs conceptId="416b6e91-9e1d-4842-ae69-c6725c4b0f7e" answerCodes="Yes,No" style="radio" /></td>
+                    </tr>
+
+                </table>
+            </section>
+
+        </section>
+
+
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+
+            <table border="0" width="100%">
+
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+
+                </tr>
+
+            </table>
+
+        </section>
+    </includeIf>
+
+</htmlform>

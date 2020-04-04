@@ -1,0 +1,266 @@
+<htmlform xmlns="http://www.w3.org/1999/html">
+    <macros>
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+    <style>
+   .section {
+      border: 1px solid $headerColor;
+      padding: 2px;
+      text-align: left;
+      margin-bottom: 1em;
+   }
+   .sectionHeader {
+      background-color: $headerColor;
+      color: $fontOnHeaderColor;
+      display: block;
+      padding: 2px;
+      font-weight: bold;
+   }
+   table.baseline-aligned td {
+      vertical-align: baseline;
+   }
+   th.subheader {
+   background-color: $headerColor;
+   color:white
+   }
+    .lblcolor{background: #e2e3f2;width: 300px;}
+</style>
+
+    <style>
+table.risks td {
+	font-size: 0.9em;
+}
+
+.section {
+	border: 1px solid$headerColor;
+	padding: 2px;
+	text-align: left;
+	margin-bottom: 1em;
+}
+
+.sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 2px;
+	font-weight: bold;
+}
+
+table.baseline-aligned td {
+	vertical-align: center;
+}
+
+</style>
+    <script type="text/javascript">
+	var $j = jQuery.noConflict();
+
+	$j(document).ready(function(){
+
+
+       var today = new Date();
+		var dated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		setValue('encdateId.value',dated);
+	// end of encounter date
+	});
+</script>
+
+    <h2>KMC MANAGEMENET</h2>
+
+    <includeIf velocityTest="$patient.gender == 'F' ">
+        <section headerCode="Question / Instructions">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate id="encdateId" labelCode="Visit Date"/>
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation default="UserProperty:defaultLocation"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider default="currentUser"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" id="message"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="A. MOTHER HISTORY">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Age of the mother </td>
+                    <td><obs conceptId="13514" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Parity</td>
+                    <td><obs conceptId="1053" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Gravidity </td>
+                    <td><obs conceptId="5624" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Birth date</td>
+                    <td><obs conceptId="6954" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Born in the same hospital (Y/N) </td>
+                    <td><obs conceptId="105678" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+        <section headerCode="B. NEW BORN HISTORY">
+            <table class="baseline-aligned">
+
+                <tr>
+                    <td class="lblcolor">Place of birth:</td>
+                    <td><obs conceptId="11147" answerConceptIds="2070,3566,8613,3527,1067,13531" answerCodes="Hospital,Health Center,On Route,House,Unknown,In transit " style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Sex :</td>
+                    <td><obs conceptId="105659" answerCodes="Male,Femme" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td><b>APGAR</b></td>
+                </tr>
+                <tr>
+                    <td><obs conceptId="106619" answerConceptIds="8537,8506,10989" answerCodes="M1,M5,M10" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Weight at birth </td>
+                    <td><obs conceptId="5916" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Head circumference (HC)</td>
+                    <td><obs conceptId="5314" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Weight at admission </td>
+                    <td><obs conceptId="105679" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Temperature at admission</td>
+                    <td><obs conceptId="105680" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Primary reason for admission</td>
+                    <td><obs conceptId="105681" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Secondary admission reasons</td>
+                    <td><obs conceptId="105682" style="text" size="25"/></td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerCode="C. Management in the neonatal unit">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Stable newborns&#60; 2000 gr</td>
+                    <td><obs conceptId="105683" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">CPAP</td>
+                    <td><obs conceptId="105684" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Antibiotics</td>
+                    <td><obs conceptId="1195" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">Aminophyilline</td>
+                    <td><obs conceptId="12991" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">SMK/KMC </td>
+                    <td><obs conceptId="105685" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <td><b>1. Serious pathologies</b></td>
+                <tr>
+                    <td>
+                        <obs conceptId="106619" answerConceptId="105686" answerCode="Sign of sepsis" style="checkbox" />
+                        <obs conceptId="106619" answerConceptId="105687" answerCode="Severe respiratory distress" style="checkbox" />
+                        <obs conceptId="106619" answerConceptId="105688" answerCode="Severe congenital malformations" style="checkbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>2. Newborns from Incubator:</b></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">If baby in Incubators? </td>
+                    <td><obs conceptId="105689" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td><b>If babies &#60;2kgs stable</b></td>
+                    <td><obs conceptId="105690" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Is baby acceptable medical conditions </td>
+                    <td><obs conceptId="105691" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+            </table>
+        </section>
+        <section headerCode="D. KMC Management">
+            <table class="baseline-aligned">
+                <tr>
+                    <td class="lblcolor">Date started on KMC </td>
+                    <td><obs conceptId="105692" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Weight starting on KMC</td>
+                    <td><obs conceptId="105693" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Complications during KMC</td>
+                    <td><obs conceptId="105694" style="text" size="25"/></td>
+                </tr>
+                <tr>
+                    <td><b>1. Parents:</b></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Motivated  </td>
+                    <td><obs conceptId="105695" answerCodes="Yes,NO" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Counseled  </td>
+                    <td><obs conceptId="105696" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Available </td>
+                    <td><obs conceptId="105697" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">Not sick</td>
+                    <td><obs conceptId="105698" answerCodes="Yes,No" style="radio" /></td>
+                </tr>
+
+                <tr>
+                    <td class="lblcolor">2. Counselling on KMC  </td>
+                    <td>
+                        <obs conceptId="106619" answerConceptId="105699" answerCode="Counselling on KMC position,For intermittent KMC,minimum 2 hours continously,For continous KMC 18 hours per day" style="checkbox" />
+                        <obs conceptId="106619" answerConceptId="105700" answerCode="Counselling on KMC position,For intermittent KMC,minimum 2 hours continously,For continous KMC 18 hours per day" style="checkbox" />
+                        <obs conceptId="106619" answerConceptId="105701" answerCode="Counselling on KMC position,For intermittent KMC,minimum 2 hours continously,For continous KMC 18 hours per day" style="checkbox" />
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <submit />
+    </includeIf>
+    <includeIf velocityTest="$patient.gender == 'M' ">
+        <section headerLabel="Invalid Patient Message">
+            <table border="0" width="100%">
+                <tr><td class="lblcolor">This Form Is Only Filled For Female Patients:</td>
+                </tr>
+            </table>
+        </section>
+    </includeIf>
+</htmlform>
