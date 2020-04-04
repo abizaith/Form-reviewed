@@ -1,0 +1,200 @@
+<htmlform>
+    <!-- Pedi HIV top level form.
+         HIV-RW.V1.akb.July13.doc
+         Created by gneza 2013
+     -->
+    <macros>
+        paperFormId = (Fill this in)
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+    </macros>
+
+    <style>
+		.section {
+			border: 1px solid $headerColor;
+			padding: 2px;
+			text-align: left;
+			margin-bottom: 1em;
+		}
+		.sectionHeader {
+			background-color: $headerColor;
+			color: $fontOnHeaderColor;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
+		}
+		table.baseline-aligned td {
+			vertical-align: baseline;
+		}
+	</style>
+    <section headerCode="GENERAL INFORMATION">
+        <table border="2" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td>
+                    <b><u>Patient:</u></b><lookup expression="patient.personName"/><br/>
+                    <b>Id Number:</b><lookup expression="patient.patientIdentifier.identifier"/><br/>
+                    {
+                    <b>Sex:</b><font color="blue"><lookup expression="patient.gender"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Age:</b><font color="blue"><lookup expression="patient.age"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Education Level:</b><font color="blue"><lookup expression="personAttributes.get('Education Level')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Religion:</b><font color="blue"><lookup expression="personAttributes.get('Religion')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Profession:</b><font color="blue"><lookup expression="personAttributes.get('Profession')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Phone number:</b><font color="blue"><lookup expression="personAttributes.get('Phone number')"/></font>
+                    <b>Civil Status:</b><font color="blue"><lookup expression="personAttributes.get('Civil Status')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Citizenship:</b><font color="blue"><lookup expression="personAttributes.get('Citizenship')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    }
+                </td>
+            </tr>
+        </table>
+        <table border="2" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td>
+                    Date:
+                    <encounterDate default="today"/>
+                </td>
+                <td>
+                    Health Facility:
+                    <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                </td>
+                <td>
+                    <encounterProvider id="encounterProvider" role="Provider" default="currentUser"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="lblcolor">Admission Date:</td>
+                <td> <font color="red"><lookup expression="fn.latestObs(10045).getDateTime()"/></font></td>
+            </tr>
+        </table>
+    </section>
+    <section headerCode="VITAL SIGNS">
+        <table border="2" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td class="lblcolor">Temperature</td>
+                <td><font color="red"><lookup expression="fn.latestObs(5088).getValueNumeric()"/></font></td>
+            </tr>
+            <tr>
+                <td class="tablelblcolor">Weight:</td>
+                <td><font color="red"><lookup expression="fn.latestObs(5089).getValueNumeric()"/></font></td>
+            </tr>
+            <tr>
+                <td class="lblcolor">Height:</td>
+                <td><font color="red"><lookup expression="fn.latestObs(5090).getValueNumeric()"/></font></td>
+            </tr>
+            <tr>
+                <td class="lblcolor">SBP:</td>
+                <td><font color="red"><lookup expression="fn.latestObs(5085).getValueNumeric()"/></font></td>
+            </tr>
+            <tr>
+                <td class="lblcolor">DBP:</td>
+                <td><font color="red"><lookup expression="fn.latestObs(5086).getValueNumeric()"/></font></td>
+            </tr>
+            <tr>
+                <td class="lblcolor">Pulse:</td>
+                <td><font color="red"><lookup expression="fn.latestObs(5087).getValueNumeric()"/></font></td>
+            </tr>
+            <tr>
+                <td class="lblcolor">O2 Saturator:</td>
+                <td><font color="red"><lookup expression="fn.latestObs(5092).getValueNumeric()"/></font></td>
+            </tr>
+            <tr>
+                <td class="lblcolor">CLINICAL IMPRESSION COMMENTS:</td>
+                <td><font color="red"><lookup expression="fn.latestObs(1364).getValueText()"/></font></td>
+            </tr>
+            <tr>
+                <td class="lblcolor">RECOMMENDATIONS:</td>
+                <td> <font color="red"><lookup expression="fn.latestObs(1391).getValueText()"/></font></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="lblcolor">Dernier Detail de Treatment </td>
+                <td><font color="red"><lookup expression="fn.latestObs(1364).getValueText()"/></font></td>
+                <td><font color="red"><lookup expression="fn.latestObs(3974).getValueDate()"/></font></td>
+            </tr>
+        </table>
+    </section>
+
+    <section headerLabel="RESIDENCE:" >
+        <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td rowspan="3"><addressHierarchyRwanda/><br/>
+                    <!-- <obs conceptId="3cda3d7e-26fe-102b-80cb-0017a47871b2" labelText="Telephone: " size="9"/>-->
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section headerLabel="SEROLOGIE VIH DE LA FAMILLE">
+        <table border="1" width="100%">
+            <tr>
+                <th>
+                    Region
+                </th>
+                <th>
+                    Results
+                </th>
+                <th>
+                    Comments
+                </th>
+            </tr>
+            <repeat>
+                <template>
+                    <obsgroup groupingConceptId="107259">
+                        <tr>
+                            <td>
+                                <obs conceptId="107258" answerConceptId="{lienAnswer}"
+                                     answerLabel="{lienLabel}" style="radio" />
+                            </td>
+                            <td>
+                                <obs conceptId="107260" style="radio" yesLabel="Normal" noLabel="Abnormal" />
+                            </td>
+                            <td align="center">
+                                <obs conceptId="107261" style="textarea" rows="3" cols="30"/>
+                            </td>
+                        </tr>
+                    </obsgroup>
+                </template>
+                <render lienAnswer="107262" lienLabel="Head" />
+                <render lienAnswer="107263" lienLabel="Eyes, Ears, Throat." />
+                <render lienAnswer="107264" lienLabel="Radiology results" />
+                <render lienAnswer="107265" lienLabel="Neck" />
+                <render lienAnswer="107266" lienLabel="Thorax" />
+                <render lienAnswer="107267" lienLabel="Heart" />
+                <render lienAnswer="107268" lienLabel="Head" />
+                <render lienAnswer="107269" lienLabel="Lungs" />
+                <render lienAnswer="107270" lienLabel="Abdomen" />
+                <render lienAnswer="107271" lienLabel="Liver" />
+                <render lienAnswer="107272" lienLabel="Kidneys" />
+                <render lienAnswer="107273" lienLabel="Pelvis" />
+                <render lienAnswer="107274" lienLabel="Extremities" />
+                <render lienAnswer="107275" lienLabel="CNS" />
+                <render lienAnswer="107276" lienLabel="Dermatological exam" />
+                <render lienAnswer="107277" lienLabel="Pain" />
+                <render lienAnswer="107278" lienLabel="Laboratory results" />
+               <!-- <render lienAnswer="107278" lienLabel="Consent for operation" />-->
+            </repeat>
+        <tr>
+            <td class="lblcolor">Consent for operation:</td>
+            <td><obs conceptId="107278" style="radio" yesLabel="Yes" noLabel="No" /></td>
+        </tr>
+            <tr>
+                <td class="lblcolor">Consent for anesthesia:</td>
+                <td><obs conceptId="107279" style="radio" yesLabel="Yes" noLabel="No" /></td>
+            </tr>
+            <tr>
+                <td class="lblcolor">Consent for blood/blood products:</td>
+                <td><obs conceptId="107280" style="radio" yesLabel="Yes" noLabel="No" /></td>
+            </tr>
+
+        </table>
+        <tr>
+            <td class="lblcolor">Consent for blood/blood products:</td>
+            <obs conceptId="107281" style="textarea" rows="3" cols="30"/>
+        </tr>
+    </section>
+
+
+    <left>
+        <submit />
+    </left>
+</htmlform>

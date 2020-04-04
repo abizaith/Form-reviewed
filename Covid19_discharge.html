@@ -1,0 +1,246 @@
+<htmlform>
+
+        <macros>
+            paperFormId = Flow-DM-RW.V2.0.akb.15May09
+            headerColor =#009d8e
+            fontOnHeaderColor = white
+
+        </macros>
+        <style>
+        th.tableHeader {
+        background-color: #009d8e;
+        color: #FFFFFF;
+        font-size: 16px;
+        text-align: left;
+        }
+        .sectionHeader { background-color: #009d8e;
+        color: white; display: block; padding: 2px; font-weight:bold; }
+        ul {
+        list-style-type: square;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        }
+
+        tr.spaceUnder>td {
+        padding-bottom: 1em;
+        }
+
+        td {
+        font-size: 15px;
+        }
+
+        #container {
+        position: relative;
+        margin: auto;
+        width: 1400px;
+        height: auto;
+        }
+
+        @media print {
+        #container {
+        display: none;
+        }
+
+        #printArea {
+        display: block;
+        }
+
+        #userBar {
+        display: none;
+        }
+
+        #banner {
+        display: none;
+        }
+
+        #footer {
+        display: none;
+        }
+
+        #htmlFormEntryBanner {
+        display: none;
+        }
+
+        .error {
+        display: none;
+        }
+
+        .lables {
+        width: 200px;
+        }
+
+        table {
+        width: 100%;
+        }
+
+        table,td,th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+
+        th {
+        text-align: left;
+        background-color: #D9D9D9;
+        font-size: 10px;
+        }
+
+        td {
+        font-size: 10px;
+        }
+
+        .selectedCancerStagingKeys {
+        page-break-before: always;
+        border: 0px;
+        }
+
+        table.selectedCancerStagingKeys td {
+        border: 0px;
+        }
+
+        #signature {
+        border: none;
+        }
+        #signature td {
+        border: none;
+        }
+        }
+
+        @media screen {
+        table {
+        border: 1px solid #DFDFDF;
+        width: 100%;
+        border-color: #009d8e;
+        }
+
+        #container {
+        display: block;
+        }
+
+        #printArea {
+        display: none;
+        }
+        }
+    </style>
+        <section headerCode="GENERAL INFORMATION">
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        <b><u>Patient:</u></b><lookup expression="patient.personName"/><br/>
+                        <b>Id Number:</b><lookup expression="patient.patientIdentifier.identifier"/><br/>
+                        {
+                        <b>Sex:</b><font color="blue"><lookup expression="patient.gender"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                        <b>Age:</b><font color="blue"><lookup expression="patient.age"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                        <b>Education Level:</b><font color="blue"><lookup expression="personAttributes.get('Education Level')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                        <b>Religion:</b><font color="blue"><lookup expression="personAttributes.get('Religion')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                        <b>Profession:</b><font color="blue"><lookup expression="personAttributes.get('Profession')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                        <b>Phone number:</b><font color="blue"><lookup expression="personAttributes.get('Phone number')"/></font>
+                        <b>Civil Status:</b><font color="blue"><lookup expression="personAttributes.get('Civil Status')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                        <b>Citizenship:</b><font color="blue"><lookup expression="personAttributes.get('Citizenship')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                        }
+                    </td>
+                </tr>
+            </table>
+            <table border="2" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td>
+                        Date:
+                        <encounterDate />
+                    </td>
+                    <td>
+                        Health Facility:
+                        <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                    </td>
+                    <td>
+                        Provider:
+                        <encounterProvider role="Provider"/>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="lblcolor">Temperature</td>
+                    <td>  <font color="red"><lookup expression="fn.latestObs(5088).getValueNumeric()"/></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Weight:</td>
+                    <td>  <font color="red"><lookup expression="fn.latestObs(5089).getValueNumeric()"/></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Height:</td>
+                    <td>   <font color="red"><lookup expression="fn.latestObs(5090).getValueNumeric()"/></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">SBP:</td>
+                    <td>  <font color="red"><lookup expression="fn.latestObs(5085).getValueNumeric()"/></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">DBP:</td>
+                    <td>  <font color="red"><lookup expression="fn.latestObs(5086).getValueNumeric()"/></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">Pulse:</td>
+                    <td>  <font color="red"><lookup expression="fn.latestObs(5087).getValueNumeric()"/></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">O2 Saturator:</td>
+                    <td>  <font color="red"><lookup expression="fn.latestObs(5092).getValueNumeric()"/></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">CLINICAL IMPRESSION COMMENTS:</td>
+                    <td> <font color="red"><lookup expression="fn.latestObs(1364).getValueText()"/></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lblcolor">RECOMMENDATIONS:</td>
+                    <td> <font color="red"><lookup expression="fn.latestObs(1391).getValueText()"/></font>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <section headerLabel="RESIDENCE:" >
+            <table  border="1" cellspacing="0" cellpadding="6" width="100%">
+                <tr>
+                    <td rowspan="3"><addressHierarchyRwanda/><br/>
+                        <!-- <obs conceptId="3cda3d7e-26fe-102b-80cb-0017a47871b2" labelText="Telephone: " size="9"/>-->
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section headerLabel="">
+            <table cellspacing="1" cellpadding="1" width="100%" style="">
+                <tr>
+                    <td class="lblcolor"><b>Investigations</b></td>
+                    <td><obs conceptId="13651" style="textarea" rows="7" cols="60" labelCode=""/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor"><b>Resultat des analyses</b></td>
+                    <td><obs conceptId="1391" style="textarea" rows="7" cols="60" labelText=""/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor"><b>Clinical/Working diagnosis</b></td>
+                    <td><obs conceptId="6731" style="textarea" rows="7" cols="60" labelText=""/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor"><b>Treatment </b></td>
+                    <td><obs conceptId="3193" style="textarea" rows="7" cols="60"/></td>
+                </tr>
+                <tr>
+                    <td class="lblcolor"><b>Discharde Plan </b></td>
+                    <td><obs conceptId="107257" style="textarea" rows="7" cols="60"/></td>
+                </tr>
+            </table>
+        </section>
+
+
+        <div class="separator">
+            <submit />
+        </div>
+    </htmlform>

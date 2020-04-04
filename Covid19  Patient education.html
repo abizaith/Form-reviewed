@@ -1,0 +1,190 @@
+<htmlform>
+
+    <macros>
+        paperFormId = Flow-DM-RW.V2.0.akb.15May09
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+
+    </macros>
+    <style>
+        th.tableHeader {
+        background-color: #009d8e;
+        color: #FFFFFF;
+        font-size: 16px;
+        text-align: left;
+        }
+        .sectionHeader { background-color: #009d8e;
+        color: white; display: block; padding: 2px; font-weight:bold; }
+        ul {
+        list-style-type: square;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        }
+
+        tr.spaceUnder>td {
+        padding-bottom: 1em;
+        }
+
+        td {
+        font-size: 15px;
+        }
+
+        #container {
+        position: relative;
+        margin: auto;
+        width: 1400px;
+        height: auto;
+        }
+
+        @media print {
+        #container {
+        display: none;
+        }
+
+        #printArea {
+        display: block;
+        }
+
+        #userBar {
+        display: none;
+        }
+
+        #banner {
+        display: none;
+        }
+
+        #footer {
+        display: none;
+        }
+
+        #htmlFormEntryBanner {
+        display: none;
+        }
+
+        .error {
+        display: none;
+        }
+
+        .lables {
+        width: 200px;
+        }
+
+        table {
+        width: 100%;
+        }
+
+        table,td,th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+
+        th {
+        text-align: left;
+        background-color: #D9D9D9;
+        font-size: 10px;
+        }
+
+        td {
+        font-size: 10px;
+        }
+
+        .selectedCancerStagingKeys {
+        page-break-before: always;
+        border: 0px;
+        }
+
+        table.selectedCancerStagingKeys td {
+        border: 0px;
+        }
+
+        #signature {
+        border: none;
+        }
+        #signature td {
+        border: none;
+        }
+        }
+
+        @media screen {
+        table {
+        border: 1px solid #DFDFDF;
+        width: 100%;
+        border-color: #009d8e;
+        }
+
+        #container {
+        display: block;
+        }
+
+        #printArea {
+        display: none;
+        }
+        }
+
+    </style>
+    <section headerCode="DRUG ADMINISTRATION FORM">
+        <table border="2" cellspacing="0" cellpadding="6" width="100%">
+            <tr>
+                <td>
+                    Patient ID #: <lookup class="value" expression="patientIdentifiers.get(&quot;Primary Care ID Type&quot;)" />
+                </td>
+                <td> Names: <lookup class="value" expression="patient.personName.familyName" />  <lookup class="value" expression="patient.personName.givenName" />
+                </td>
+                <td>
+                    Age: <lookup expression="patient.age" class="value"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Date:
+                    <encounterDate />
+                </td>
+                <td>
+                    Health Facility:
+                    <encounterLocation id="location" default="GlobalProperty:registration.defaultLocationCode"/>
+                </td>
+                <td>
+                    Provider:
+                    <encounterProvider role="Provider"/>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section headerCode="Education Information">
+        <table class="baseline-aligned">
+            <obsgroup groupingConceptId="12104">
+                <table class="baseline-aligned">
+                    <tr>
+                        <td class="lblcolor">Identified Health Education needs</td>
+                        <td>
+                            <obs conceptId="12105" id="past_medical" style="textarea" rows="3" cols="30"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Education subject</td>
+                        <td>
+                            <obs conceptId="12106" id="past_medical" style="textarea" rows="3" cols="30"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Information received by the patient</td>
+                        <td>
+                            <obs conceptId="12108" id="past_medical" style="textarea" rows="3" cols="30"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lblcolor">Information received by the next kin</td>
+                        <td>
+                            <obs conceptId="12109" id="past_medical" style="textarea" rows="3" cols="30"/>
+                        </td>
+                    </tr>
+                </table>
+            </obsgroup>
+        </table>
+    </section>
+
+    <center>
+        <submit/>
+    </center>
+</htmlform>

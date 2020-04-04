@@ -1,0 +1,297 @@
+<htmlform>
+
+    <macros>
+        paperFormId = Flow-DM-RW.V2.0.akb.15May09
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+
+    </macros>
+    <style>
+        th.tableHeader {
+        background-color: #009d8e;
+        color: #FFFFFF;
+        font-size: 16px;
+        text-align: left;
+        }
+        .sectionHeader { background-color: #009d8e;
+        color: white; display: block; padding: 2px; font-weight:bold; }
+        ul {
+        list-style-type: square;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        }
+
+        tr.spaceUnder>td {
+        padding-bottom: 1em;
+        }
+
+        td {
+        font-size: 15px;
+        }
+
+        #container {
+        position: relative;
+        margin: auto;
+        width: 1400px;
+        height: auto;
+        }
+
+        @media print {
+        #container {
+        display: none;
+        }
+
+        #printArea {
+        display: block;
+        }
+
+        #userBar {
+        display: none;
+        }
+
+        #banner {
+        display: none;
+        }
+
+        #footer {
+        display: none;
+        }
+
+        #htmlFormEntryBanner {
+        display: none;
+        }
+
+        .error {
+        display: none;
+        }
+
+        .lables {
+        width: 200px;
+        }
+
+        table {
+        width: 100%;
+        }
+
+        table,td,th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+
+        th {
+        text-align: left;
+        background-color: #D9D9D9;
+        font-size: 10px;
+        }
+
+        td {
+        font-size: 10px;
+        }
+
+        .selectedCancerStagingKeys {
+        page-break-before: always;
+        border: 0px;
+        }
+
+        table.selectedCancerStagingKeys td {
+        border: 0px;
+        }
+
+        #signature {
+        border: none;
+        }
+        #signature td {
+        border: none;
+        }
+        }
+
+        @media screen {
+        table {
+        border: 1px solid #DFDFDF;
+        width: 100%;
+        border-color: #009d8e;
+        }
+
+        #container {
+        display: block;
+        }
+
+        #printArea {
+        display: none;
+        }
+        }
+
+    </style>
+    <div class="header">DH - DOSSIER INFIRMIER FORM</div>
+    <div class="bodycontainer">
+
+        <div id="accordion">
+
+            <div id="">
+                <br/>
+                <div class="section">
+                    <div class="sectionheader">Encounter Details</div>
+                    <div class="sectionbody">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td>Date:
+                                    <encounterDate default="today"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Location:
+                                    <b>
+                                        <encounterLocation id="location" default="GlobalProperty:encounter.defaultLocation"/>
+                                    </b><br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Provider:
+                                    <encounterProvider default="currentUser"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="sectionheader">Demographic Information</div>
+                    <div class="sectionbody">
+                        <table class="baseline-aligned">
+                            <tr>
+                                <td>Patient names</td>
+                                <td><b><u>
+                                    <lookup expression="patient.personName"/>
+                                </u></b><br/>
+                                    {<b>Id:</b>
+                                    <lookup
+                                            expression="patient.patientIdentifier.identifier"/>
+                                    ; <b>Sex:</b>
+                                    <lookup expression="patient.gender"/>
+                                    ; <b>Age:</b>
+                                    <lookup
+                                            expression="patient.age"/>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="section">
+                    <div class="sectionheader">1. Vital Signs Informations</div>
+                    <div class="sectionbody">
+
+                        <table>
+                            <tr>
+                                <obsgroup groupingConceptId="1114">
+                                    <td>
+                                        <obs conceptId="5088" labelText="Temperature:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5089" labelText="Weight:" required="true"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5090" labelText="Height:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5085" labelText="SBP:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5086" labelText="DBP:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5087" labelText="Pulse:"/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="5092" labelText="O2 Saturation:"/>
+                                    </td>
+                                </obsgroup>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <obs conceptId="105477" labelText="Patient Triage:" style="textarea" rows="2" cols="20"/> <font color="red"> Triage Comments</font>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <section>
+                <div class="sectionheader"></div>
+                <fieldset>
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td>
+                                <obs conceptId="5242" labelCode="Respiration"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <obs conceptId="10567" labelCode="Ponctions (en litres/24h)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <obs conceptId="10858" labelCode="Diurese (en litres/24h)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <obs conceptId="11335" labelCode="Selles (Nb de fois/24h)"/>
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <td>
+                                <obs conceptId="5087" labelCode="Tension Arterielle "/>
+                                &lt;!&ndash;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(2 fois/24h)
+                                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <obs conceptId="5087" labelCode="Tension Arterielle 2 "/>&ndash;&gt;
+                            </td>
+                        </tr>-->
+                    </table>
+
+                </fieldset>
+
+            </section>
+            <section>
+                <div class="sectionheader">2. Dossier Infirmier</div>
+                <div class="sectionbody">
+                    <table class="baseline-aligned">
+                        <tr>
+                            <td>Soins Infirmiers</td>
+                            <td>
+                                <obs conceptId="1364" style="textarea" rows="3" cols="30"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Observations</td>
+                            <td>
+                                <obs conceptId="1391" style="textarea" rows="3" cols="30"/>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </section>
+
+
+            <div>
+                <center>
+                    <submit/>
+                </center>
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+            <b>&#169;</b> <span>MoH, District Hospital OPD form</span>
+        </div>
+    </div>
+
+</htmlform>
