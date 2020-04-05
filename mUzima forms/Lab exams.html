@@ -98,10 +98,10 @@
 
     <div class="sub-section">
         <h3>Exam List</h3>
-        <div class="sub-section repeat" data-concept="105462^Drug^99DCT">
+        <div class="sub-section">
             <div class="form-group">
-                <label for="exam">Exam:</label>
-                <select class="form-control" id="obs.LAB_EXAMS" name="obs.LAB_EXAMS" data-concept="1271^LAB_EXAMS^99DCT">
+                <label for="TESTSORDERED">Exam:</label>
+                <select class="form-control" id="obs.TESTSORDERED" name="obs.TESTSORDERED" data-concept="3cd937e4-26fe-102b-80cb-0017a47871b2^TESTS ORDERED^99DCT">
                     <option value="">...</option>
                     <option value="9^BLOOD SUGAR (retired)^99DCT">BLOOD SUGAR (retired)</option>
                     <option value="12^X-RAY, CHEST^99DCT">X-RAY, CHEST</option>
@@ -1216,8 +1216,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="results">Results:</label>
-                <select class="form-control" id="obs.Results" name="obs.Results" data-concept="107276^Results^99DCT">
+                <label for="Laboratoryresults">Results:</label>
+                <select class="form-control" id="obs.Laboratoryresults" name="obs.Laboratoryresults" data-concept="39ed201e-c0e8-48dd-8944-551a14428a4b^Laboratory results^99DCT">
                     <option value="">...</option>
                     <option value="703^POSITIVE^99DCT">POSITIVE  </option>
                     <option value="664^NEGATIVE^99DCT">NEGATIVE  </option>
@@ -1225,16 +1225,16 @@
                     <option value="1116^ABNORMAL^99DCT">ABNORMAL </option>
                 </select>
                 <div class="form-group">
-                    <label for="testsotherresult">Tests other result:</label>
-                    <input class="form-control" id="obs.testsotherresult" name="obs.testsotherresult" data-concept="106048^ Tests other result^99DCT" type="text">
+                    <label for="Laboratorytestsotherresult">Tests other result:</label>
+                    <input class="form-control" id="obs.Laboratorytestsotherresult" name="obs.Laboratorytestsotherresult" data-concept="c963d117-f6eb-4e98-aa64-0d52a3476c20^Laboratory tests other result^99DCT" type="text">
                 </div>
             </div>
         </div>
     </div>
 
-    </form>
-    </body>
-    <script type="text/javascript">
+</form>
+</body>
+<script type="text/javascript">
 $(document).ready(function () {
 	$('#save_draft').click(function () {
 		$(this).prop('disabled', true);
