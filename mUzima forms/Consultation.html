@@ -1,0 +1,176 @@
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/jquery-autocomplete-min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>VITAL SIGNS</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
+<form id="VitalSigns_form" name="VitalSigns_form">
+    <div class="section">
+        <fieldset>
+            <h3>Encounter Details</h3>
+            <div class="form-group">
+                <label for="encounter.location_id">Location Name:<span class="required">*</span></label>
+                <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..."
+                       required="required">
+                <input class="form-control" name="encounter.location_id" type="hidden">
+            </div>
+            <div class="form-group">
+                <label for="encounter.provider_id_select">Provider:</label>
+                <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+                <input class="form-control" name="encounter.provider_id_select" type="hidden">
+            </div>
+            <div class="form-group hidden">
+                <select id="select_providers"></select>
+            </div>
+            <div class="form-group show_provider_id_text">
+                <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+                <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                       type="text" required="required" disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+                <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                       name="encounter.encounter_datetime" type="text" readonly="readonly"
+                       required="required">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+                       type="hidden" required="required">
+            </div>
+        </fieldset>
+    </div>
+    <div class="section">
+        <fieldset>
+            <h3>DEMOGRAPHICS & CLINICAL MEASUREMENTS</h3>
+
+            <div class="form-group">
+                <input class="form-control" id="patient.uuid"
+                       name="patient.uuid" type="hidden" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.medical_record_number">Patient identifier:</label>
+                <input class="form-control" id="patient.medical_record_number"
+                       name="patient.medical_record_number" type="text" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.given_name">Given Name:</label>
+                <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.middle_name">Middle Name:</label>
+                <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.family_name">Family Name:</label>
+                <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.sex">Gender:</label>
+                <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
+                    <option value="">...</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="patient.birth_date">Date Of Birth:</label>
+                <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text"
+                       readonly="readonly" disabled="disabled">
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="section">
+        <h3>CONSULTATION</h3>
+        <fieldset>
+            <label class="font-normal">
+                Complains
+                <input id="obs.symptomPresent" name="obs.symptomPresent" type="text"
+                       data-concept="1293^SYMPTOM^99DCT">
+                       <!--value="3cd6f600-26fe-102b-80cb-0017a47871b2^YES^99DCT">-->
+            </label>
+            <div class="form-group">
+                <label>Other Complaints: </label>
+                <textarea class="form-control" id="obs.Complaints" name="obs.Complaints" type="text"  rows="2" data-concept="1736^Complaints^99DCT"></textarea>
+            </div>
+            <div class="form-group">
+                <label>History of the illness: </label>
+                <textarea class="form-control" id="obs.HistoryOfIllness" name="obs.HistoryOfIllness" type="text"  rows="2" data-concept="7944^HistoryOfIllness^99DCT"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Past Medical Hishory: </label>
+                <textarea class="form-control" id="obs.PastMedicalHishory" name="obs.PastMedicalHishory" type="text"  rows="2" data-concept="6178^PastMedicalHishory^99DCT"></textarea>
+            </div>
+        </fieldset>
+    </div>
+    <hr/>
+
+    <div>
+        <input id="save_draft" name="save_draft" type="submit" value="Draft"/>
+        <input id="submit_form" name="submit_form" type="submit" value="submit"/>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript">
+        $(document).ready(function () {
+           var dateFormat = "dd-mm-yy";
+            var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+            var encounterDatetime = $('#encounter\\.encounter_datetime');
+            if ($(encounterDatetime).val() == "") {
+                $(encounterDatetime).val(currentDate);
+            }
+
+            $('#save_draft').click(function () {
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+            });
+            $('#submit_form').click(function () {
+                $(this).prop('disabled', true);
+                document.submit();
+                $(this).prop('disabled', false);
+            });
+
+            document.setupAutoCompleteData('encounter\\.location_id');
+            document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+            document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+            document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+            $('#encounter\\.provider_id_select').change(function () {
+                if ($('#encounter\\.provider_id_select').val() === '') {
+                    $('#encounter\\.provider_id').val('');
+                       $('.show_provider_id_text').show();
+                }
+            });
+            $('.future-or-today-date').change(function () {
+                if ($(this).is(':visible') && $(this).val() != '') {
+                    var errors = {};
+                    var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+                    var matches = pattern.exec($(this).val());
+                    var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+                    var today = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
+                    if (enteredDate < today) {
+                        errors[$(this).attr('name')] = "Please enter present or future date.";
+                    }
+                    toggleValidationMessages(errors);
+                }
+            });
+        });
+</script>
+
+</html>
