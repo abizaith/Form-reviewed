@@ -21,7 +21,7 @@
     <h2 class="text-center">Registration Form</h2>
 
     <div class="section">
-        <h3>Names</h3>
+        <!-- <h3>Names</h3>-->
         <div class="form-group">
             <input class="form-control" id="patient.uuid"
                    name="patient.uuid" type="hidden" readonly="readonly">
@@ -55,9 +55,23 @@
             <input type="hidden" id="attribute_type_name" name="attribute_type_name" value="Mother's Name">
             <input type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="8d871d18-c2cc-11de-8d13-0010c6dffd0f">
         </div>
+
+        <div class="form-group group-set" data-group="patient.personattribute^2">
+            <label for="patient.mothers_name">Father's Name: </label>
+            <input class="form-control" id="patient.fathers_name" name="attribute_value" type="text">
+            <input type="hidden" id="attribute_type_name" name="attribute_type_name" value="Father's Name">
+            <input type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="c1ed1c60-857f-4018-acd0-10c1b3fc0f4c">
+        </div>
+        <div class="form-group group-set" data-group="patient.personattribute^2">
+            <label for="patient.Contact_Persons_Phone_Number">Contact Person's Phone Number in case of emergency: </label>
+            <input class="form-control" id="patient.Contact_Persons_Phone_Number" name="attribute_value" type="text">
+            <input type="hidden" id="attribute_type_name" name="attribute_type_name" value="ontact Person's Phone Number in case of emergency">
+            <input type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="99cc76cc-3914-11e7-a919-92ebcb67fe44">
+        </div>
+
     </div>
     <div class="section group-set" data-group="patient.personaddress">
-        <h3>Address</h3>
+        <h3>Address/Residence</h3>
         <div class="form-group">
             <label for="country">Country: </label>
             <input class="form-control" id="country" name="country" type="text">
@@ -79,7 +93,7 @@
             <input class="form-control" id="address3" name="address3" type="text">
         </div>
         <div class="form-group">
-            <label for="address1">Umudugudu: </label>
+            <label for="address1">Village: </label>
             <input class="form-control" id="address1" name="address1" type="text">
         </div>
     </div>
