@@ -101,7 +101,7 @@
         <fieldset>
             <div class="form-group">
                 <label for="obs.Covidcontroltest">Covid19 test(Number 1-X:</label>
-                <input id="obs.Covidcontroltest" class="form-control" name="obs.Covidcontroltest" type="number" data-concept="107305^SBP^99DCT"/>
+                <input id="obs.Covidcontroltest" class="form-control" name="obs.Covidcontroltest" type="number" data-concept="107305^Covid control test^99DCT"/>
             </div>
 
             <div class="form-group">
@@ -129,6 +129,34 @@
                     <option value="703^POSITIVE^99DCT">POSITIVE  </option>
                     <option value="664^NEGATIVE^99DCT">NEGATIVE  </option>
                 </select>
+            </div>
+        </fieldset>
+        <fieldset>
+           <!--<div class="form-group">
+                <label for="obs.DATEOFLABORATORYTEST">DATE OF LABORATORY TEST:</label>
+                <input id="obs.DATEOFLABORATORYTEST" class="form-control" name="obs.DATEOFLABORATORYTEST" type="date" value="3267^DATE OF LABORATORY TEST^99DCT"/>
+            </div>-->
+            <div class="form-group">
+                <label>DATE OF LABORATORY TEST:(dd-mm-yyyy)</label>
+                <textarea class="form-control" id="obs.DATEOFLABORATORYTEST" name="obs.DATEOFLABORATORYTEST" type="text"  data-concept="3267^DATE OF LABORATORY TEST^99DCT"></textarea>
+            </div>
+          <!-- <div class="form-group">
+               <label for="obs.Dateofreceivingresults">Date of receiving results:</label>
+               <input id="obs.Dateofreceivingresults" class="form-control" name="obs.Dateofreceivingresults" type="date" value="107327^Date of receiving results^99DCT"/>
+           </div>-->
+            <div class="form-group">
+                <label>Date of receiving results:(dd-mm-yyyy)</label>
+                <textarea class="form-control" id="obs.Dateofreceivingresults" name="obs.Dateofreceivingresults" type="text"  data-concept="107327^Date of receiving results^99DCT"></textarea>
+            </div>
+          <!--  <div class="form-group">
+                <label for="obs.Datesupposedfortotakesample">Date supposed for to take sample:</label>
+                <input id="obs.Datesupposedfortotakesample" class="form-control" name="obs.Datesupposedfortotakesample" type="date" value="107311^Date supposed for to take sample^99DCT"/>
+                &lt;!&ndash;<input class="form-control date_picker Date today-date" id="obs.Datesupposedfortotakesample" name="obs.Datesupposedfortotakesample" type="date">&ndash;&gt;
+            </div>-->
+
+            <div class="form-group">
+                <label>Date supposed for to take sample:(dd-mm-yyyy)</label>
+                <textarea class="form-control" id="obs.Datesupposedfortotakesample" name="obs.Datesupposedfortotakesample" type="text"  data-concept="107311^Date supposed for to take sample^99DCT"></textarea>
             </div>
         </fieldset>
 
@@ -173,133 +201,7 @@
 
 </form>
 </body>
-<!--
-<script type="text/javascript">
-$(document).ready(function () {
-	$('#save_draft').click(function () {
-		$(this).prop('disabled', true);
-		document.saveDraft();
-		$(this).prop('disabled', false);
-	});
 
-	$('#submit_form').click(function () {
-		$(this).prop('disabled', true);
-		document.submit();
-		$(this).prop('disabled', false);
-	});
-
-	$('#obs\\.apoio_nutricional').change(function(){
-		if($('input[name=obs\\.apoio_nutricional]:checked').val() == "1065^SIM^99DCT"){
-			$('.apoio_nutricional_div').show();
-		} else{
-			$('.apoio_nutricional_div').hide();
-		}
-	});
-	$('#obs\\.apoio_nutricional').trigger('change');
-
-	$('#obs\\.tratamento_de_tb').change(function(){
-		if($('input[name=obs\\.tratamento_de_tb]:checked').val() == "1065^SIM^99DCT"){
-			$('.tratamento_de_tb_div').show();
-		} else{
-			$('.tratamento_de_tb_div').hide();
-		}
-	});
-	$('#obs\\.tratamento_de_tb').trigger('change');
-
-	$('#obs\\.profilaxia_com_cotrimoxazol').change(function(){
-		if($('input[name=obs\\.profilaxia_com_cotrimoxazol]:checked').val() == "1065^SIM^99DCT"){
-			$('.profilaxia_com_cotrimoxazol_div').show();
-		} else{
-			$('.profilaxia_com_cotrimoxazol_div').hide();
-		}
-	});
-	$('#obs\\.profilaxia_com_cotrimoxazol').trigger('change');
-
-	$('#obs\\.profilaxia_com_inh').change(function(){
-		if($('input[name=obs\\.profilaxia_com_inh]:checked').val() == "1065^SIM^99DCT"){
-			$('.profilaxia_com_inh_div').show();
-		} else{
-			$('.profilaxia_com_inh_div').hide();
-		}
-	});
-	$('#obs\\.profilaxia_com_inh').trigger('change');
-
-	$('#effeitos_sec_outros').change(function(){
-		if($('#effeitos_sec_outros').is(":checked")){
-			$('.effeitos_sec_outros_div').show();
-		} else{
-			$('.effeitos_sec_outros_div').hide();
-		}
-	});
-	$('#effeitos_sec_outros').trigger('change');
-
-	if($('#patient\\.sex').val() == "M"){
-		$('.female_gender_check_div').hide();
-		$('.male_gender_check_div').show();
-	}else{
-		$('.female_gender_check_div').show();
-		$('.male_gender_check_div').hide();
-	}
-
-	$.validator.addMethod("eligibleAgeOnly", function (value, element) {
-		if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
-		return value > 14;
-	}, " "
-	);
-
-	// attach 'nonFutureDate' class to perform validation.
-	jQuery.validator.addClassRules({
-		eligibleAgeOnly: { eligibleAgeOnly: true }
-	});
-
-	calculateBMI();
-
-	document.setupAutoCompleteData('encounter\\.location_id');
-	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
-	document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
-	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
-
-	var prePopulateData = $.trim($('#pre_populate_data').html());
-	var prePopulateJSON = JSON.parse(prePopulateData);
-	$.each(prePopulateJSON, function(key, value) {
-		if (key === 'patient') {
-			var names = "";
-			$.each(value, function(keys, values) {
-				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
-				   names=names+" "+values;
-				}
-
-				if(keys === "patient.birth_date"){
-					var tmp = values.split('-');
-					if(tmp[2].length==4){
-                    	var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
-					}else{
-						var birthDate = new Date(tmp[0],tmp[1]-1,tmp[2]);
-					}
-					var today = new Date();
-					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
-					var age = (today - birthDate) / milliSecondsInAYear;
-					$('#patient\\.age').val((Math.floor(age)));
-				}
-			});
-			$('#patient\\.names').val(names);
-		}
-	});
-});
-
-function calculateBMI(){
-	var weightKG = parseFloat($('#obs\\.peso').val());
-	var heightCm = parseFloat($('#obs\\.altura').val());
-	var heightM;
-	var IMC;
-	if(!isNaN(heightCm) && !isNaN(weightKG)){
-		heightM = heightCm/100;
-		IMC = weightKG/(heightM*heightM);
-		$('#obs\\.imc').val(IMC.toFixed(2));
-	}
-}
-</script>
-</html>-->
 
 <script type="text/javascript">
 $(document).ready(function () {
