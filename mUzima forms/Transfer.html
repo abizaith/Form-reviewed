@@ -1,0 +1,247 @@
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/jquery-autocomplete-min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>TRANSFER FORM</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
+<form id="VitalSigns_form" name="VitalSigns_form">
+    <div class="section">
+        <fieldset>
+            <h3>Encounter Details</h3>
+            <div class="form-group">
+                <label for="encounter.location_id">Location Name:<span class="required">*</span></label>
+                <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..."
+                       required="required">
+                <input class="form-control" name="encounter.location_id" type="hidden">
+            </div>
+            <div class="form-group">
+                <label for="encounter.provider_id_select">Provider:</label>
+                <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+                <input class="form-control" name="encounter.provider_id_select" type="hidden">
+            </div>
+            <div class="form-group hidden">
+                <select id="select_providers"></select>
+            </div>
+            <div class="form-group show_provider_id_text">
+                <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+                <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                       type="text" required="required" disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+                <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                       name="encounter.encounter_datetime" type="text" readonly="readonly"
+                       required="required">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+                       type="hidden" required="required">
+            </div>
+        </fieldset>
+    </div>
+    <div class="section">
+        <fieldset>
+            <h3>DEMOGRAPHICS & CLINICAL MEASUREMENTS</h3>
+
+            <div class="form-group">
+                <input class="form-control" id="patient.uuid"
+                       name="patient.uuid" type="hidden" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.medical_record_number">Patient identifier:</label>
+                <input class="form-control" id="patient.medical_record_number"
+                       name="patient.medical_record_number" type="text" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.given_name">Given Name:</label>
+                <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.middle_name">Middle Name:</label>
+                <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.family_name">Family Name:</label>
+                <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.sex">Gender:</label>
+                <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
+                    <option value="">...</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="patient.birth_date">Date Of Birth:</label>
+                <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text"
+                       readonly="readonly" disabled="disabled">
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="section">
+        <h3>VITAL SIGNS</h3>
+        <fieldset>
+            <div class="form-group">
+                <label for="obs.Tepmerature">Tepmerature (oC):</label>
+                <input id="obs.Tepmerature" class="form-control" name="obs.Tepmerature" type="number" data-concept="5088^Tepmerature (oC)^99DCT"/>
+            </div>
+            <div class="form-group">
+                <label for="obs.Weight">Weight (kg):</label>
+                <input id="obs.Weight" class="form-control" name="obs.Weight" type="number" data-concept="5089^Weight (kg)^99DCT"/>
+            </div>
+            <div class="form-group">
+                <label for="obs.height">Height (CM):</label>
+                <input id="obs.height" class="form-control" name="obs.height" type="number" data-concept="5090^Height (CM)^99DCT"/>
+            </div>
+            <div class="form-group">
+                <label for="obs.SBP">SBP:</label>
+                <input id="obs.SBP" class="form-control" name="obs.SBP" type="number" data-concept="5085^SBP^99DCT"/>
+            </div>
+            <div class="form-group">
+                <label for="obs.DBP">DBP:</label>
+                <input id="obs.DBP" class="form-control" name="obs.DBP" type="number" data-concept="5086^DBP^99DCT"/>
+            </div>
+            <div class="form-group">
+                <label for="obs.Pulse">Pulse:</label>
+                <input id="obs.Pulse" class="form-control" name="obs.Pulse" type="number" data-concept="5087^Pulse^99DCT"/>
+            </div>
+            <div class="form-group">
+                <label for="obs.Saturation">Saturation:</label>
+                <input id="obs.Saturation" class="form-control" name="obs.Saturation" type="number" data-concept="5092^Saturation^99DCT"/>
+            </div>
+            <div class="form-group">
+                <label>Soins Infirmiers: </label>
+                <textarea class="form-control" id="obs.SoinsInfirmiers" name="obs.SoinsInfirmiers" type="text"  rows="2" data-concept="1364^SoinsInfirmiers^99DCT"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Observations: </label>
+                <textarea class="form-control" id="obs.Observations" name="obs.Observations" type="text"  rows="2" data-concept="1391^Observations^99DCT"></textarea>
+            </div>
+        </fieldset>
+    </div>
+    <hr/>
+
+    <div class="form-group Covid19_Sites">
+        <label for="Covid19_Sites">
+            TRANSFER DESTINATION
+        </label>
+        <select class="form-control" id="Covid19_Sites" name="Covid19_Sites" required="" data-concept="107291^Covid19 Sites^99DCT">
+            <option value="">...</option>
+            <option value="107218^Hill top Hotel^99DCT">Hill top Hotel</option>
+            <option value="107218^Masoro ^99DCT">Masoro </option>
+            <option value="107218^Kicukiro (Kagarama) ^99DCT">Kicukiro (Kagarama) </option>
+            <option value="107218^Nyarutarama VIP ^99DCT">Nyarutarama VIP </option>
+            <option value="107218^La Parisse Treatment Center ^99DCT">La Parisse Treatment Center </option>
+            <option value="107218^La Parisse Quarantine^99DCT">La Parisse Quarantine</option>
+            <option value="107218^Palast Rock ^99DCT">Palast Rock </option>
+            <option value="107218^Noblezza ^99DCT">Noblezza </option>
+            <option value="107218^Kanyinya Treatment Center ^99DCT">Kanyinya Treatment Center </option>
+            <option value="107218^Muhanga (Kabgayi) ^99DCT">Muhanga (Kabgayi) </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Timeoftransferout">Transfer Date:</label>
+        <input class="form-control date_picker Date today-date" id="obs.Timeoftransferout" name="obs.Timeoftransferout" data-concept="12098^Discharge Date:^99DCT" type="date">
+    </div>
+    <div class="form-group">
+        <label>REASON FOR TRANSFER: </label>
+        <textarea class="form-control" id="obs.REASONFORTRANSFEROUT" name="obs.REASONFORTRANSFEROUT" type="text"  rows="2" data-concept="3004^REASONFORTRANSFEROUT^99DCT"></textarea>
+    </div>
+    <div class="form-group differential_count">
+        <label for="diagnosis">DIAGNOSIS</label>
+        <select class="form-control" id="diagnosis" name="diagnosis" required="required" data-concept="f1bec2f8-ce26-4fb8-a4fb-68bf7a34381d^Diagnosis^99DCT">
+            <option value="">...</option>
+            <option value="cf64f9d4-d38a-11e8-b6e2-0c5b8f279a64^DAYS^99DCT">Coronavirus infection, unspecified - B342</option>
+            <option value="cf6520bd-d38a-11e8-b6e2-0c5b8f279a64^DAYS^99DCT">Coronavirus as the cause of diseases classified elsewhere - B972</option>
+            <option value="cf6520f1-d38a-11e8-b6e2-0c5b8f279a64^DAYS^99DCT">Oth coronavirus as the cause of diseases classd elswhr - B9729</option>
+            <option value="cf6a6236-d38a-11e8-b6e2-0c5b8f279a64^DAYS^99DCT">Pneumonia due to SARS-associated coronavirus - J1281</option>
+            <option value="cf6520d7-d38a-11e8-b6e2-0c5b8f279a64^DAYS^99DCT">SARS-associated coronavirus causing diseases classd elswhr - B9721</option>
+            <option value="1079^CONTINUOUS^99DCT">Continuous</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Other clinical diagnosis:</label>
+        <textarea class="form-control" id="obs.OtherDiagnosis" name="obs.OtherDiagnosis" type="text"  rows="2" data-concept="6731^OtherDiagnosis^99DCT"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Treatment details:</label>
+        <textarea class="form-control" id="obs.Treatment" name="obs.Treatment" type="text"  rows="2" data-concept="107287^Treatment^99DCT"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Clinical summary:</label>
+        <textarea class="form-control" id="obs.ClinicalSummary" name="obs.ClinicalSummary" type="text"  rows="2" data-concept="1364^ClinicalSummary^99DCT"></textarea>
+    </div>
+
+    <div>
+        <input id="save_draft" name="save_draft" type="submit" value="Draft"/>
+        <input id="submit_form" name="submit_form" type="submit" value="submit"/>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript">
+        $(document).ready(function () {
+           var dateFormat = "dd-mm-yy";
+            var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+            var encounterDatetime = $('#encounter\\.encounter_datetime');
+            if ($(encounterDatetime).val() == "") {
+                $(encounterDatetime).val(currentDate);
+            }
+
+            $('#save_draft').click(function () {
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+            });
+            $('#submit_form').click(function () {
+                $(this).prop('disabled', true);
+                document.submit();
+                $(this).prop('disabled', false);
+            });
+
+            document.setupAutoCompleteData('encounter\\.location_id');
+            document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+            document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+            document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+            $('#encounter\\.provider_id_select').change(function () {
+                if ($('#encounter\\.provider_id_select').val() === '') {
+                    $('#encounter\\.provider_id').val('');
+                       $('.show_provider_id_text').show();
+                }
+            });
+            $('.future-or-today-date').change(function () {
+                if ($(this).is(':visible') && $(this).val() != '') {
+                    var errors = {};
+                    var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+                    var matches = pattern.exec($(this).val());
+                    var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+                    var today = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
+                    if (enteredDate < today) {
+                        errors[$(this).attr('name')] = "Please enter present or future date.";
+                    }
+                    toggleValidationMessages(errors);
+                }
+            });
+        });
+</script>
+</html>
