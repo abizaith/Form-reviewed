@@ -134,6 +134,8 @@
                     <b>Religion:</b><font color="blue"><lookup expression="personAttributes.get('Religion')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
                     <b>Profession:</b><font color="blue"><lookup expression="personAttributes.get('Profession')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
                     <b>Phone number:</b><font color="blue"><lookup expression="personAttributes.get('Phone number')"/></font>
+                    <b>Civil Status:</b><font color="blue"><lookup expression="personAttributes.get('Civil Status')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
+                    <b>Citizenship:</b><font color="blue"><lookup expression="personAttributes.get('Citizenship')"/></font>&#160;&#160;&#160;&#160;&#160;&#160;
                     }
                 </td>
             </tr>
@@ -211,7 +213,6 @@
             </tr>
         </table>
     </section>
-
     <section headerLabel="Discharge info:" >
         <table  border="1" cellspacing="0" cellpadding="6" width="100%">
             <tr>
@@ -232,8 +233,36 @@
         </table>
     </section>
 
+    <section headerLabel="">
+        <table cellspacing="1" cellpadding="1" width="100%" style="">
+            <tr>
+                <td class="lblcolor"><b>Investigations</b></td>
+                <td><obs conceptId="13651" style="textarea" rows="7" cols="60" labelCode=""/></td>
+            </tr>
+            <tr>
+                <td class="lblcolor"><b>Resultat des analyses</b></td>
+                <td><obs conceptId="1391" style="textarea" rows="7" cols="60" labelText=""/></td>
+            </tr>
+            <tr>
+                <td class="lblcolor"><b>Clinical/Working diagnosis</b></td>
+                <td><obs conceptId="6731" style="textarea" rows="7" cols="60" labelText=""/></td>
+            </tr>
+            <tr>
+                <td class="lblcolor"><b>Treatment </b></td>
+                <td><obs conceptId="107287" style="textarea" rows="7" cols="60"/></td>
+            </tr>
+            <tr>
+                <td class="lblcolor"><b>Discharde Plan </b></td>
+                <td><obs conceptId="107257" style="textarea" rows="7" cols="60"/></td>
+            </tr>
+            <tr>
+                <td><obs conceptId="5096" labelText="Return date/Rendevous" /></td>
+            </tr>
+        </table>
+    </section>
+
+
     <div class="separator">
         <submit />
     </div>
-
 </htmlform>
