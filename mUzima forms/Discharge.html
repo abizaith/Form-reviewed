@@ -11,14 +11,13 @@
     <script src="js/additional-methods.min.js"></script>
     <script src="js/jquery-autocomplete-min.js"></script>
     <script src="js/muzima.js"></script>
-
-    <title>VITAL SIGNS</title>
 </head>
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
 <form id="VitalSigns_form" name="VitalSigns_form">
     <div class="section">
         <fieldset>
+            <h2>PATIENT DISCHARGE</h2>
             <h3>Encounter Details</h3>
             <div class="form-group">
                 <label for="encounter.location_id">Location Name:<span class="required">*</span></label>
@@ -103,13 +102,27 @@
                 <!--<input class="form-control" id="obs.DischargeDate" name="obs.dischargeDate" data-concept="3800^Discharge Date:^99DCT" type="datetime-local">-->
                 <input class="form-control date_picker Date today-date" id="DischargeDate" name="DischargeDate" type="date">
             </div>
-
-            <!--
-           <div class="form-group">
-                <label>Discharge Date:</label>
-                <textarea class="form-control" id="obs.DischargeDate" name="obs.DischargeDate" type="date"  rows="2" data-concept="3800^DischargeDate^99DCT"></textarea>
+            <div class="form-group">
+                <fieldset>
+                    <h4>DISCHARGE REASON</h4>
+                    <label>
+                        <input id="obs.PATIENTTRANSFERREDOUT" name="obs.REASONFOREXITINGCARE" type="checkbox" data-concept="1811^REASON FOR EXITING CARE^99DCT" value="1744^PATIENT TRANSFERRED OUT^99DCT">
+                        PATIENT TRANSFERRED OUT
+                    </label>
+                    <label>
+                        <input id="obs.PATIENTDEFAULTED" name="obs.REASONFOREXITINGCARE" type="checkbox" data-concept="1811^REASON FOR EXITING CARE^99DCT" value="1743^PATIENT DEFAULTED^99DCT">
+                        PATIENT DEFAULTED
+                    </label>
+                    <label>
+                        <input id="obs.PATIENTDIED" name="obs.REASONFOREXITINGCARE" type="checkbox" data-concept="1811^REASON FOR EXITING CARE^99DCT" value="1742^PATIENT DIED^99DCT">
+                        PATIENT DIED
+                    </label>
+                    <label>
+                        <input id="obs.PATIENTCURED" name="obs.REASONFOREXITINGCARE" type="checkbox" data-concept="1811^REASON FOR EXITING CARE^99DCT" value="1746^PATIENT CURED^99DCT">
+                        PATIENT CURED
+                    </label>
+                </fieldset>
             </div>
-           -->
 
             <div class="form-group">
                 <label>Investigations:</label>
@@ -218,3 +231,4 @@
 </script>
 
 </html>
+
