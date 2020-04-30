@@ -11,14 +11,14 @@
     <script src="js/additional-methods.min.js"></script>
     <script src="js/jquery-autocomplete-min.js"></script>
     <script src="js/muzima.js"></script>
-
-    <title>TRANSFER FORM</title>
 </head>
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
 <form id="VitalSigns_form" name="VitalSigns_form">
+
     <div class="section">
         <fieldset>
+            <h2>TRANSFER FORM</h2>
             <h3>Encounter Details</h3>
             <div class="form-group">
                 <label for="encounter.location_id">Location Name:<span class="required">*</span></label>
@@ -139,6 +139,7 @@
     <hr/>
 
     <div class="form-group Covid19_Sites">
+        <h3>TRANSFER INFORMATION</h3>
         <label for="Covid19_Sites">
             TRANSFER DESTINATION
         </label>
@@ -154,7 +155,23 @@
             <option value="107218^Noblezza ^99DCT">Noblezza </option>
             <option value="107218^Kanyinya Treatment Center ^99DCT">Kanyinya Treatment Center </option>
             <option value="107218^Muhanga (Kabgayi) ^99DCT">Muhanga (Kabgayi) </option>
+            <option value="107309^Kicukiro IPRC ^99DCT">Kicukiro IPRC </option>
         </select>
+    </div>
+
+
+    <div class="form-group">
+        <fieldset>
+            <h4>COVID19 UNITY TO TRANSFER IN</h4>
+            <label>
+                <input id="obs.Covid19Isolation" name="obs.Covid19ManagementUnits" type="checkbox" data-concept="107304^Covid19 Management Units^99DCT" value="107303^PATIENT TRANSFERRED OUT^99DCT">
+                Covid19 Isolation
+            </label>
+            <label>
+                <input id="obs.Covid19treatment" name="obs.Covid19ManagementUnits" type="checkbox" data-concept="107304^Covid19 Management Units^99DCT" value="107302^Covid19 treatment^99DCT">
+                Covid19 treatment
+            </label>
+        </fieldset>
     </div>
 
     <div class="form-group">
